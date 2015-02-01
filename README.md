@@ -25,10 +25,15 @@
 	  
 2). Go to the dbrequest directory and in dbrequest.h change the path to the database 
 
-          ex: #define DB_PATH /home/pi/project/database/test.db	  
+          ex: #define DB_PATH /home/pi/project/database/test.db	 
+    
+    then give the permission for database like this
+         
+         chown www-data:www-data /home/pi/project/database/
+	 chown www-data:www-data /home/pi/project/database/test.db	
 
 3). Go to the directory called deployment
-
+	
 	 sudo chmod +x configure.sh
 	 ./configure.sh
 	 
