@@ -17,7 +17,7 @@ Installation process in Raspberry pi
         sudo apt-get libcurl4-openssl-dev
 
 
-How to install this application
+###How to install this application
 
 1). First get the project repository 
 
@@ -38,7 +38,7 @@ Here is the sample installation process which might be helpful to install
 
 	https://gist.github.com/GPrathap/bf4e702c72d06de76ef0
 	
-How to test a separate file
+###How to test a separate file
 
        ./configure all //this will compile all c codes and create binary objects
     
