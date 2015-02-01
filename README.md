@@ -2,7 +2,7 @@
 
 Installation process in Raspberry pi
 
-Pre requestes 
+###Prerequisites
 
 1).Install Apache HTTP server 
 	
