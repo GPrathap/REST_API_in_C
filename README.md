@@ -1,6 +1,6 @@
 ## REST API in C
 
-Installation process in Rasbperry pi 
+Installation process in Raspberry pi
 
 Pre requestes 
 
