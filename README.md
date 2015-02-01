@@ -21,7 +21,7 @@ How to install this application
 
 1). First get the project repository 
 
-	  git clone <a href="https://github.com/GPrathap/REST_API_in_C.git">https://github.com/GPrathap/REST_API_in_C.git</a>
+	  git clone https://github.com/GPrathap/REST_API_in_C.git
 	  
 2). Go to the dbrequest directory and in dbrequest.h change the path to the database 
 
@@ -36,7 +36,7 @@ and follow its instructions.
 
 Here is the sample installation process which might be helpful to install
 
-	[https://gist.github.com/GPrathap/bf4e702c72d06de76ef0]
+	https://gist.github.com/GPrathap/bf4e702c72d06de76ef0
 	
 How to test a separate file
 
