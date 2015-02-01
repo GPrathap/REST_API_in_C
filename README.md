@@ -29,8 +29,8 @@
     
     then give the permission for database like this
          
-         chown www-data:www-data /home/pi/project/database/
-	 chown www-data:www-data /home/pi/project/database/test.db	
+        chown www-data:www-data /home/pi/project/database/
+        chown www-data:www-data /home/pi/project/database/test.db	
 
 3). Go to the directory called deployment
 	
