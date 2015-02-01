@@ -21,7 +21,7 @@ How to install this application
 
 1). First get the project repository 
 
-	  git clone [REST API in C](https://github.com/GPrathap/REST_API_in_C.git)
+	  git clone https://github.com/GPrathap/REST_API_in_C.git
 	  
 2). Go to the dbrequest directory and in dbrequest.h change the path to the database 
 
