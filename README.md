@@ -38,7 +38,7 @@ Here is the sample installation process which might be helpful to install
 
 	https://gist.github.com/GPrathap/bf4e702c72d06de76ef0
 	
-###How to test a separate file
+###How to test on a separate file
 
        ./configure all //this will compile all c codes and create binary objects
     
