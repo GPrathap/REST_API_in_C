@@ -17,7 +17,7 @@ int main(){
 
         if(status==0)
         {
-            printf("Con not connect to the databse may be part is not valied. Please check it again or no permossion do open it\n");
+            printf("Can not connect to the database may be part is not valid. Please check it again or no permission to open it\n");
             return -1;
         }
 
