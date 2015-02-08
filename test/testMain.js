@@ -4,7 +4,7 @@ var fs = require('fs');
 var User = require('./generateUsers');
   // OR more powerfully define an array of REST operations with substitution
   // This does a unique PUT and then a GET for each iteration
-var user =new User(6,7,1);
+var user =new User(6,7,4);
 
 
 var userList=user.getUserList();

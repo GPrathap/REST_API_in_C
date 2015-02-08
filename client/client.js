@@ -51,7 +51,7 @@ var apiDetalis={
 var userDetails={
 
         action:"addUser",
-        username:"user37",
+        username:"user70",
         password:"test123",
         cookie:"",
         firstname:"user1",
@@ -64,11 +64,11 @@ var userDetails={
 var applicatioDetails={
 
     action:"addApplication",
-    application:"default42",
+    application:"default70",
     tier:"Unlimited",
     callbackUrl:"",
     description:"",
-    username:"user37"
+    username:"user70"
 }
 
 
@@ -84,20 +84,20 @@ var subscriptionDetails={
     version:"1.0.0",
     provider:"provider1",
     tier:"Gold",
-    username:"user37",
-    applicationName:"default42"
+    username:"user70",
+    applicationName:"default70"
 
 };
 
 var applicationKeyDetails={
 
     action:"generateApplicationKey",
-    application:"default42",
+    application:"default70",
     keytype:"PRODUCTION",
     callbackUrl:"",
     authorizedDomains:"ALL",
     validityTime:36000,
-    username:"user37"
+    username:"user70"
 
 
 };
@@ -115,7 +115,7 @@ var optsSingup = {
     headers: {
         "Content-Type": "application/x-www-form-urlencoded"
     },
-    body:"action=addUser&username=user38&password=test123&allFieldsValues=firstname|lastname|email"
+    body:"action=addUser&username=user70&password=test123&allFieldsValues=firstname|lastname|email"
 
 };
 var optsLogin = {

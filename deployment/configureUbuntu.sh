@@ -40,8 +40,8 @@ if [ -z "$1" ]; then
   					fi
          			read -p "Are you alright? (y/n) " RESP
         		  	if [ "$RESP" = "y" ]; then
-          					 cp default.conf "$PARENTDIR/sites-available"
-          					 a2ensite default.conf
+          					 cp 000-default.conf "$PARENTDIR/sites-available"
+          					 a2ensite 000-default.conf
 
           			else
           					echo "Do the changes manually as you wish\n"

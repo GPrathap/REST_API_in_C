@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../hedder/uthash.h"
-#define DB_PATH "/home/geesara/try4/apache2_modules/project/test.db"
+#define DB_PATH "/home/geesara/try4/apache2_modules/project/Git/REST_API_in_C/database/test.db"
 
 
 
