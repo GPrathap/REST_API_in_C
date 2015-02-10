@@ -51,7 +51,7 @@ int handler(char* request){
     switch(action){
 
         case "addUser" :
-            signup(requestBody,url);
+            signUp(requestBody,url);
             break;
 
         case "login" :

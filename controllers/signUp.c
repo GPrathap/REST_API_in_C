@@ -13,13 +13,13 @@ char *signUp(char* reqbody,char* url,int memorySize);
  * @param       memorySize  how many bytes are to be dynamically allocated for response body
  * @param       url         endpoint url
 */
-struct response_data *signupRequest(char* reqbody,char* cookie,int memorySize,char* url);
+struct response_data *signUpRequest(char* reqbody,char* cookie,int memorySize,char* url);
 
 /**
  * signUpResponse
  * @param       reqbody     response body     
 */
-char* signupResponse(char* res);
+char* signUpResponse(char* res);
 
 /**
  * databaseHandlerSignUp
