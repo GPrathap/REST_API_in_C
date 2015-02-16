@@ -1,0 +1,10 @@
+{
+  "signUp":"https://localhost/apimanager/user/signUp",
+  "login":"https://localhost/apimanager/user/login",
+  "addApplication":"https://localhost/apimanager/user/addApplication",
+  "addSubscription":"https://localhost/apimanager/user/addSubscription",
+  "generateApplicationKey":"https://localhost/apimanager/user/generateApplicationKey",
+  "addAPI":"https://localhost/apimanager/apiuser/addAPI/",
+  "loginAPI":"https://localhost/apimanager/apiuser/login/",
+  "publishAPI":"https://localhost/apimanager/apiuser/publishAPI"
+}

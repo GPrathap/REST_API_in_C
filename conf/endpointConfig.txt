@@ -1,0 +1,11 @@
+CGI-BIN=/usr/local/apache2/cgi-bin,
+DOMAIN="localhost",
+APACHE2=/etc/apache2,
+signUp="http://localhost:9763/store/site/blocks/user/sign-up/ajax/user-add.jag",
+login="http://localhost:9763/store/site/blocks/user/login/ajax/login.jag",
+loginAPI="http://localhost:9763/publisher/site/blocks/user/login/ajax/login.jag",
+addApplication="http://localhost:9763/store/site/blocks/application/application-add/ajax/application-add.jag",
+addSubscription="http://localhost:9763/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag",
+generateApplicationKey="http://localhost:9763/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag",
+addAPI="http://localhost:9763/publisher/site/blocks/item-add/ajax/add.jag",
+publishAPI="http://localhost:9763/publisher/site/blocks/life-cycles/ajax/life-cycles.jag"
