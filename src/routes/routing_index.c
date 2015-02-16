@@ -56,13 +56,13 @@ int main(){
 
         //handle request according to the request action
         //initialize the thread
-       if (pthread_mutex_init(&lock, NULL) != 0)
+        if (pthread_mutex_init(&lock, NULL) != 0)
         {
              printf("{error:\"true\",message:\"Internal server error-a thread initialization error\"}\n");
              return 0;
         }
         //create a thread
-        err = pthread_create(&(tid[i]), NULL, &handler,(void*)requestBody);
+        err = pthread_create(&(tid[0]), NULL, &handler,(void*)requestBody);
         if (err != 0){
             printf("{error:\"true\",message:\"Internal server error- thread creation error due to not enough storage\"}\n");
         }
@@ -71,7 +71,7 @@ int main(){
         //finally destroy the lock
         pthread_mutex_destroy(&lock);
 
-         handler((void*)requestBody);
+        // handler((void*)requestBody);
     }
 
     return 0;
@@ -144,43 +144,44 @@ void* handler(void* args){
     //get action
     struct keyValue_struct *action=getValue("action",&reqData);
     char* actionMethod=action->value;
-    if(strcmp(actionMethod,"addUser")==0){
-
+    if(strcmp(actionMethod,"addUser")==0)
+    {
         signUp(requestBody,getUrl("signUp"),200);
-
-    }else if(strcmp(actionMethod,"login")==0){
-
+    }
+    else if(strcmp(actionMethod,"login")==0)
+    {
         action=getValue("tag",&reqData);
         actionMethod=action->value;
-        if(strcmp(actionMethod,"api")!=0){
-
-             login(requestBody,getUrl("login"),200);
-        }else{
-
-             apiLogin(requestBody,getUrl("loginAPI"),1000);
+        if(strcmp(actionMethod,"api")!=0)
+        {
+            login(requestBody,getUrl("login"),200);
         }
-
-
-    }else if(strcmp(actionMethod,"addApplication")==0){
-
-       addApplication(requestBody,getUrl("addApplication"),1200);
-
-    }else if(strcmp(actionMethod,"addAPISubscription")==0){
-
-       addSubscription(requestBody,getUrl("addSubscription"),4096);
-
-    }else if(strcmp(actionMethod,"generateApplicationKey")==0){
-
-       generateApplicationKey(requestBody,getUrl("generateApplicationKey"),4096);
-
-    }else if(strcmp(actionMethod,"addAPI")==0){
-
-       addAPI(requestBody,getUrl("addAPI"),1000);
+        else
+        {
+            apiLogin(requestBody,getUrl("loginAPI"),1000);
+        }
     }
-    else if(strcmp(actionMethod,"updateStatus")==0){
-
-       publishAPI(requestBody,getUrl("publishAPI"),4000);
+    else if(strcmp(actionMethod,"addApplication")==0)
+    {
+         addApplication(requestBody,getUrl("addApplication"),1200);
     }
+    else if(strcmp(actionMethod,"addAPISubscription")==0)
+    {
+        addSubscription(requestBody,getUrl("addSubscription"),4096);
+    }
+    else if(strcmp(actionMethod,"generateApplicationKey")==0)
+    {
+        generateApplicationKey(requestBody,getUrl("generateApplicationKey"),4096);
+    }
+    else if(strcmp(actionMethod,"addAPI")==0)
+    {
+        addAPI(requestBody,getUrl("addAPI"),1000);
+    }
+    else if(strcmp(actionMethod,"updateStatus")==0)
+    {
+         publishAPI(requestBody,getUrl("publishAPI"),4000);
+    }
+
     pthread_mutex_unlock(&lock);
     return NULL;
 }
