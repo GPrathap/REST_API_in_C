@@ -26,7 +26,7 @@
 
 	  git clone https://github.com/GPrathap/REST_API_in_C.git
 
-2). Change these properties in endpointConfig.txt in bin directory 
+2). Change these properties in endpointConfig.txt in conf directory 
 
     CGI_BIN 
  	Change this to your Apache HTTP server CGI_BIN location
@@ -39,10 +39,10 @@
     ENDPOINT URLS
 	Here you have to change the domain name of server where WSO2 API Manager is currently running.  
 
-    Add REST API endpoint urls in serverConfig.json in bin directory 
-    Sample of serverConfig.json and endpointConfig.txt can be found in /conf directory  
-    
-3). Go to the directory called bin
+
+3).Add REST API endpoint urls in serverConfig.json in conf directory 
+
+4). Go to the directory called bin
 	
 	 sudo chmod +x configure.sh
 	 sudo ./configure.sh
