@@ -24,7 +24,7 @@
 
 1). First get the project repository 
 
-	  git clone https://github.com/GPrathap/REST_API.git
+	  git clone https://github.com/GPrathap/REST_API_in_C.git
 
 2). Change these properties in endpointConfig.txt in bin directory 
 
