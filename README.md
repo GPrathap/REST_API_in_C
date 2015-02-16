@@ -1,6 +1,6 @@
 ## REST API in C
 
-#####Installation process in Raspberry pi
+#####REST API installation process
 
 ###Prerequisites
 
@@ -15,27 +15,34 @@
 3).Install curl library
     
         sudo apt-get libcurl4-openssl-dev
-
+4).Install 
 
 ###How to install this application
 
 1). First get the project repository 
 
-	  git clone https://github.com/GPrathap/REST_API_in_C.git
-	  
-2). Go to the dbrequest directory and in dbrequest.h change the path to the database 
+	  git clone https://github.com/GPrathap/REST_API.git
 
-          ex: #define DB_PATH /home/pi/project/database/test.db	 
+2). Change these properties in endpointConfig.txt in bin directory 
+
+    CGI_BIN 
+ 	Change this to your Apache HTTP server CGI_BIN location
+		
+		Example -: /usr/local/apache2/cgi-bin/
+
+    DB_PATH
+	Provide any location where you would like to store your database 
+
+    ENDPOINT URLS
+	Here you have to change the domain name of server where WSO2 API Manager is currently running.  
+
+    Add REST API endpoint urls in serverConfig.json in bin directory 
+    Sample of serverConfig.json and endpointConfig.txt can be found in /conf directory  
     
-    then give the permission for database like this
-         
-        chown www-data:www-data /home/pi/project/database/
-        chown www-data:www-data /home/pi/project/database/test.db	
-
-3). Go to the directory called deployment
+3). Go to the directory called bin
 	
 	 sudo chmod +x configure.sh
-	 ./configure.sh
+	 sudo ./configure.sh
 	 
 and follow its instructions.
 
@@ -43,10 +50,3 @@ Here is the sample installation process which might be helpful to install
 
 	https://gist.github.com/GPrathap/bf4e702c72d06de76ef0
 	
-###How to test on a separate file
-
-       ./configure all //this will compile all c codes and create binary objects
-    
-       ./configure (login|signup|addApplication|....) //this will compile only given c file into binary object           ex-> ./configure login
-    
-       ./configure clean //this will remove all binary objects which have been created  
