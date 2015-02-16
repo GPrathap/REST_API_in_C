@@ -2,11 +2,11 @@
 
 #####REST API docs 
     
-         index.html 
+       just open index.html  
 
 #####REST API installation process
 
-###Prerequisites
+#####Prerequisites
 
 1).Install Apache HTTP server 
 	
