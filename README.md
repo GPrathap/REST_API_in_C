@@ -14,8 +14,11 @@
 
 3).Install curl library
     
-        sudo apt-get libcurl4-openssl-dev
-4).Install 
+        	sudo apt-get libcurl4-openssl-dev
+        	
+4).Install fcgi library
+      		
+      		sudo apt-get install libfcgi-dev
 
 ###How to install this application
 
