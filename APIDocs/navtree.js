@@ -1,17 +1,18 @@
 var NAVTREE =
 [
   [ "IoT hub Implementation", "index.html", [
-    [ "Classes", null, [
-      [ "Class List", "annotated.html", "annotated" ],
-      [ "Class Index", "classes.html", null ],
-      [ "Class Members", "functions.html", [
+    [ "IoT hub Implementation", "md_IoTHubImplementation_README.html", null ],
+    [ "Data Structures", null, [
+      [ "Data Structures", "annotated.html", "annotated" ],
+      [ "Data Structure Index", "classes.html", null ],
+      [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
-      [ "File Members", "globals.html", [
+      [ "Globals", "globals.html", [
         [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
@@ -26,9 +27,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_r_e_s_tful_request_8js.html",
-"libs_2external_libs_2headerfile_2jsmn_8h.html#ad30df3d9e174dcb6060160f486f2772fafa350a2c19cc5fddbfb7c90309d3fe41",
-"sign_up_8c_source.html"
+"RESTfulRequest_8js.html",
+"libs_2externalLibs_2headerfile_2jsmn_8h.html#ad30df3d9e174dcb6060160f486f2772fa851a0e75343c14a13c6893b3727ead16",
+"signUp_8c.html#a82ff910bc4450e9db920c8a724b0c4c3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

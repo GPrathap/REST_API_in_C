@@ -1,8 +1,8 @@
-## REST API in C
+## IoT hub Implementation
 
-#####REST API docs 
+#####API docs 
     
-       just open index.html  
+       open index.html in APIDocs directory  
 
 #####REST API installation process
 

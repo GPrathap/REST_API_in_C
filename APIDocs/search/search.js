@@ -15,7 +15,8 @@ var indexSectionsWithContent =
   5: "u",
   6: "j",
   7: "j",
-  8: "bdeghjklmsuv"
+  8: "bdeghjklmsuv",
+  9: "i"
 };
 
 var indexSectionNames =
@@ -28,7 +29,8 @@ var indexSectionNames =
   5: "typedefs",
   6: "enums",
   7: "enumvalues",
-  8: "defines"
+  8: "defines",
+  9: "pages"
 };
 
 function convertToId(search)

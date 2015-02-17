@@ -1,10 +1,10 @@
 {
-  "signUp":"https://localhost/apimanager/user/signUp",
+  "signUp":"https://localhost/apimanager/user/sign-up",
   "login":"https://localhost/apimanager/user/login",
-  "addApplication":"https://localhost/apimanager/user/addApplication",
-  "addSubscription":"https://localhost/apimanager/user/addSubscription",
-  "generateApplicationKey":"https://localhost/apimanager/user/generateApplicationKey",
-  "addAPI":"https://localhost/apimanager/apiuser/addAPI/",
+  "addApplication":"https://localhost/apimanager/user/application-add",
+  "addSubscription":"https://localhost/apimanager/user/subscription-add",
+  "generateApplicationKey":"https://localhost/apimanager/user/application-key-generate",
+  "addAPI":"https://localhost/apimanager/apiuser/add-api/",
   "loginAPI":"https://localhost/apimanager/apiuser/login/",
-  "publishAPI":"https://localhost/apimanager/apiuser/publishAPI"
+  "publishAPI":"https://localhost/apimanager/apiuser/publish-api"
 }

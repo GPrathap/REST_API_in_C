@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>IoT hub Implementation: REST_API_in_C/libs/headerfile/curlreq.h File Reference</title>
+<title>IoT hub Implementation: IoTHubImplementation/libs/headerfile/curlreq.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -91,7 +92,7 @@ $(document).ready(function(){initNavTree('curlreq_8h.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,11 +112,25 @@ $(document).ready(function(){initNavTree('curlreq_8h.html','');});
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;stdio.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="resources_2external_libs_2headerfile_2uthash_8h_source.html">../../resources/externalLibs/headerfile/uthash.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="resources_2externalLibs_2headerfile_2uthash_8h_source.html">../../resources/externalLibs/headerfile/uthash.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="dbrequest_8h_source.html">./dbrequest.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="json_parser_8h_source.html">./jsonParser.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="make_buffer_8h_source.html">./makeBuffer.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="resources_2external_libs_2headerfile_2jsmn_8h_source.html">../../resources/externalLibs/headerfile/jsmn.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="jsonParser_8h_source.html">./jsonParser.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="makeBuffer_8h_source.html">./makeBuffer.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="resources_2externalLibs_2headerfile_2jsmn_8h_source.html">../../resources/externalLibs/headerfile/jsmn.h</a>&quot;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for curlreq.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="curlreq_8h__incl.png" border="0" usemap="#IoTHubImplementation_2libs_2headerfile_2curlreq_8h" alt=""/></div>
+<map name="IoTHubImplementation_2libs_2headerfile_2curlreq_8h" id="IoTHubImplementation_2libs_2headerfile_2curlreq_8h">
+<area shape="rect" id="node6" href="resources_2externalLibs_2headerfile_2uthash_8h.html" title="../../resources/external\lLibs/headerfile/uthash.h" alt="" coords="425,262,584,303"/><area shape="rect" id="node9" href="dbrequest_8h.html" title="./dbrequest.h" alt="" coords="301,96,400,123"/><area shape="rect" id="node11" href="jsonParser_8h.html" title="./jsonParser.h" alt="" coords="722,96,824,123"/><area shape="rect" id="node13" href="resources_2externalLibs_2headerfile_2jsmn_8h.html" title="../../resources/external\lLibs/headerfile/jsmn.h" alt="" coords="543,171,696,213"/><area shape="rect" id="node15" href="makeBuffer_8h.html" title="./makeBuffer.h" alt="" coords="883,96,991,123"/><area shape="rect" id="node14" href="baseStruct_8h.html" title="./baseStruct.h" alt="" coords="721,179,825,205"/></map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="curlreq_8h__dep__incl.png" border="0" usemap="#IoTHubImplementation_2libs_2headerfile_2curlreq_8hdep" alt=""/></div>
+<map name="IoTHubImplementation_2libs_2headerfile_2curlreq_8hdep" id="IoTHubImplementation_2libs_2headerfile_2curlreq_8hdep">
+<area shape="rect" id="node2" href="curlreq_8c.html" title="IoTHubImplementation\l/libs/curlreq.c" alt="" coords="5,103,159,145"/><area shape="rect" id="node3" href="addapi_8c.html" title="IoTHubImplementation\l/src/controllers/addapi.c" alt="" coords="185,103,345,145"/><area shape="rect" id="node4" href="addApplications_8c.html" title="IoTHubImplementation\l/src/controllers/addApplications.c" alt="" coords="370,103,584,145"/><area shape="rect" id="node5" href="addSubscription_8c.html" title="IoTHubImplementation\l/src/controllers/addSubscription.c" alt="" coords="609,103,825,145"/><area shape="rect" id="node6" href="apilogin_8c.html" title="IoTHubImplementation\l/src/controllers/apilogin.c" alt="" coords="850,103,1016,145"/><area shape="rect" id="node7" href="apipublish_8c.html" title="IoTHubImplementation\l/src/controllers/apipublish.c" alt="" coords="1041,103,1223,145"/><area shape="rect" id="node8" href="generateApplicationKey_8c.html" title="IoTHubImplementation\l/src/controllers/generateApplication\lKey.c" alt="" coords="1247,96,1473,152"/><area shape="rect" id="node9" href="login_8c.html" title="IoTHubImplementation\l/src/controllers/login.c" alt="" coords="1497,103,1651,145"/><area shape="rect" id="node10" href="signUp_8c.html" title="IoTHubImplementation\l/src/controllers/signUp.c" alt="" coords="1677,103,1840,145"/><area shape="rect" id="node11" href="routing__index_8c.html" title="IoTHubImplementation\l/src/routes/routing_index.c" alt="" coords="1865,103,2041,145"/></map>
+</div>
 </div>
 <p><a href="curlreq_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -180,8 +195,8 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_fc0ace0c67d2a14fd3b71827d0f455de.html">REST_API_in_C</a></li><li class="navelem"><a class="el" href="dir_c48b0ca71bee42b15a2945a0ae5797e2.html">libs</a></li><li class="navelem"><a class="el" href="dir_9a092a35d2d4b30c2211b1dc453a4204.html">headerfile</a></li><li class="navelem"><a class="el" href="curlreq_8h.html">curlreq.h</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 12:24:22 for IoT hub Implementation by
+    <li class="navelem"><a class="el" href="dir_edaed777a13e9196bfe1f13ee27ced16.html">IoTHubImplementation</a></li><li class="navelem"><a class="el" href="dir_2c3ed11286edd76d36653cadcb9a083d.html">libs</a></li><li class="navelem"><a class="el" href="dir_4ab8ba800fd9a973fcb57862f28b1510.html">headerfile</a></li><li class="navelem"><a class="el" href="curlreq_8h.html">curlreq.h</a></li>
+    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

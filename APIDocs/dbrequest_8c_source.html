@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>IoT hub Implementation: REST_API_in_C/libs/dbrequest.c Source File</title>
+<title>IoT hub Implementation: IoTHubImplementation/libs/dbrequest.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -91,7 +92,7 @@ $(document).ready(function(){initNavTree('dbrequest_8c_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,7 +112,7 @@ $(document).ready(function(){initNavTree('dbrequest_8c_source.html','');});
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../resources/externalLibs/headerfile/uthash.h&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dbrequest_8h.html">./headerfile/dbrequest.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="base_struct_8h.html">./headerfile/baseStruct.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="baseStruct_8h.html">./headerfile/baseStruct.h</a>&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/* Execute SQL statement */</span></div>
@@ -290,11 +291,11 @@ $(document).ready(function(){initNavTree('dbrequest_8c_source.html','');});
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;             <span class="keywordflow">if</span>(strcmp(dest,<span class="stringliteral">&quot;Set-Cookie&quot;</span>)==0)</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;             {</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                       <span class="keywordtype">char</span>** cookieKeyValue=<a class="code" href="base_struct_8c.html#ab39a39cfc3dafcdd137ec53ca81936d7">str_split</a>(buffer,<span class="charliteral">&#39;:&#39;</span>);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                       <span class="keywordtype">char</span>** cookieKeyValue=<a class="code" href="baseStruct_8c.html#ab39a39cfc3dafcdd137ec53ca81936d7">str_split</a>(buffer,<span class="charliteral">&#39;:&#39;</span>);</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                       cookiec-&gt;<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=100;</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                       cookiec-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                       <span class="keywordtype">char</span>* temp1=<a class="code" href="base_struct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a>(cookieKeyValue[1],<span class="stringliteral">&quot;\r&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                       <span class="keywordtype">char</span>* temp2=<a class="code" href="base_struct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a>(temp1,<span class="stringliteral">&quot;\n&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                       <span class="keywordtype">char</span>* temp1=<a class="code" href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a>(cookieKeyValue[1],<span class="stringliteral">&quot;\r&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                       <span class="keywordtype">char</span>* temp2=<a class="code" href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a>(temp1,<span class="stringliteral">&quot;\n&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                       strcpy(cookiec-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>,temp2);</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
@@ -389,11 +390,11 @@ $(document).ready(function(){initNavTree('dbrequest_8c_source.html','');});
 <div class="ttc" id="dbrequest_8c_html_adda15b3389b8aa5883c1cf9d3d2bf7c8"><div class="ttname"><a href="dbrequest_8c.html#adda15b3389b8aa5883c1cf9d3d2bf7c8">updateSubscriptionDetails</a></div><div class="ttdeci">char * updateSubscriptionDetails(char *consumerKey, char *accessToken, char *consumerSecret, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00099">dbrequest.c:99</a></div></div>
 <div class="ttc" id="structurl__data_html_ad3a5fe9c035fd8d6821363df1ce77725"><div class="ttname"><a href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">url_data::data</a></div><div class="ttdeci">char * data</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00027">dbrequest.h:27</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_a417af26e6acadf52a4243b87c6287126"><div class="ttname"><a href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a></div><div class="ttdeci">char * createUserTable(char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00029">dbrequest.c:29</a></div></div>
-<div class="ttc" id="base_struct_8c_html_a003e090ef8e500eceadba683e83a98ad"><div class="ttname"><a href="base_struct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a></div><div class="ttdeci">char * str_replace(const char *str, const char *old, const char *newOne)</div><div class="ttdef"><b>Definition:</b> <a href="base_struct_8c_source.html#l00136">baseStruct.c:136</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_a0aae734ed02770eebe6181ded527765a"><div class="ttname"><a href="dbrequest_8c.html#a0aae734ed02770eebe6181ded527765a">updateLoginAPIUser</a></div><div class="ttdeci">char * updateLoginAPIUser(char *cookie, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00090">dbrequest.c:90</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_a49c10740a5fe1f3a8fd0f3719fc068f5"><div class="ttname"><a href="dbrequest_8c.html#a49c10740a5fe1f3a8fd0f3719fc068f5">createSQLStatementDelete</a></div><div class="ttdeci">char * createSQLStatementDelete()</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00117">dbrequest.c:117</a></div></div>
-<div class="ttc" id="dbrequest_8h_html_a0670e0e3546fcd815d007fe1aeff321e"><div class="ttname"><a href="dbrequest_8h.html#a0670e0e3546fcd815d007fe1aeff321e">DB_PATH</a></div><div class="ttdeci">#define DB_PATH</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00197">dbrequest.h:197</a></div></div>
-<div class="ttc" id="base_struct_8c_html_ab39a39cfc3dafcdd137ec53ca81936d7"><div class="ttname"><a href="base_struct_8c.html#ab39a39cfc3dafcdd137ec53ca81936d7">str_split</a></div><div class="ttdeci">char ** str_split(char *a_str, const char a_delim)</div><div class="ttdef"><b>Definition:</b> <a href="base_struct_8c_source.html#l00012">baseStruct.c:12</a></div></div>
+<div class="ttc" id="dbrequest_8h_html_a0670e0e3546fcd815d007fe1aeff321e"><div class="ttname"><a href="dbrequest_8h.html#a0670e0e3546fcd815d007fe1aeff321e">DB_PATH</a></div><div class="ttdeci">#define DB_PATH</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00198">dbrequest.h:198</a></div></div>
+<div class="ttc" id="baseStruct_8c_html_ab39a39cfc3dafcdd137ec53ca81936d7"><div class="ttname"><a href="baseStruct_8c.html#ab39a39cfc3dafcdd137ec53ca81936d7">str_split</a></div><div class="ttdeci">char ** str_split(char *a_str, const char a_delim)</div><div class="ttdef"><b>Definition:</b> <a href="baseStruct_8c_source.html#l00012">baseStruct.c:12</a></div></div>
+<div class="ttc" id="baseStruct_8h_html"><div class="ttname"><a href="baseStruct_8h.html">baseStruct.h</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_a6e8be0b881fc114a7e79987dd95d6e1b"><div class="ttname"><a href="dbrequest_8c.html#a6e8be0b881fc114a7e79987dd95d6e1b">createUser</a></div><div class="ttdeci">char * createUser(char *username, char *password, char *cookie)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00064">dbrequest.c:64</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_afaddd70c00b847c955ae6838ec5d5050"><div class="ttname"><a href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a></div><div class="ttdeci">int connectToDatabase(sqlite3 **db)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00127">dbrequest.c:127</a></div></div>
 <div class="ttc" id="structsite__cookie_html_a5b008e1c9b9df5a724dd286d950eb30a"><div class="ttname"><a href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">site_cookie::cookie</a></div><div class="ttdeci">char * cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00015">dbrequest.h:15</a></div></div>
@@ -402,10 +403,10 @@ $(document).ready(function(){initNavTree('dbrequest_8c_source.html','');});
 <div class="ttc" id="dbrequest_8c_html_a7af1fcc273c8343fe7d59f20ca62c33c"><div class="ttname"><a href="dbrequest_8c.html#a7af1fcc273c8343fe7d59f20ca62c33c">getPreviousCookieValue</a></div><div class="ttdeci">char * getPreviousCookieValue(char *username, char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00236">dbrequest.c:236</a></div></div>
 <div class="ttc" id="structurl__data_html_a580f76d1bdde5b56bb7454e89a0d1ba8"><div class="ttname"><a href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">url_data::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00026">dbrequest.h:26</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_a9a1120fe8f6fb03e9964d2c76fdff670"><div class="ttname"><a href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a></div><div class="ttdeci">int executeSQLStatement(sqlite3 **db, const char *sql, void *data, char **errmsg, char *successCon, int(*callback)(void *, int, char **, char **))</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00011">dbrequest.c:11</a></div></div>
-<div class="ttc" id="base_struct_8h_html"><div class="ttname"><a href="base_struct_8h.html">baseStruct.h</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_ad52bbf3110f9426d91e4ed47cb05e258"><div class="ttname"><a href="dbrequest_8c.html#ad52bbf3110f9426d91e4ed47cb05e258">updateCookie</a></div><div class="ttdeci">char * updateCookie(char *cookie, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00081">dbrequest.c:81</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_a52c592e86aff35d6fe6253ab96415785"><div class="ttname"><a href="dbrequest_8c.html#a52c592e86aff35d6fe6253ab96415785">body_callback</a></div><div class="ttdeci">size_t body_callback(void *ptr, size_t size, size_t nmemb, struct url_data *data)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00203">dbrequest.c:203</a></div></div>
 <div class="ttc" id="dbrequest_8h_html"><div class="ttname"><a href="dbrequest_8h.html">dbrequest.h</a></div></div>
+<div class="ttc" id="baseStruct_8c_html_a003e090ef8e500eceadba683e83a98ad"><div class="ttname"><a href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a></div><div class="ttdeci">char * str_replace(const char *str, const char *old, const char *newOne)</div><div class="ttdef"><b>Definition:</b> <a href="baseStruct_8c_source.html#l00136">baseStruct.c:136</a></div></div>
 <div class="ttc" id="structurl__data_html"><div class="ttname"><a href="structurl__data.html">url_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00024">dbrequest.h:24</a></div></div>
 <div class="ttc" id="structsite__cookie_html_a993673972e04f0a8dc5821e4fc6d5aa9"><div class="ttname"><a href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">site_cookie::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00014">dbrequest.h:14</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_ae96066b1338776fba2f9281bbfe96560"><div class="ttname"><a href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a></div><div class="ttdeci">size_t header_callback(char *buffer, size_t size, size_t nitems, struct site_cookie *cookiec)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00177">dbrequest.c:177</a></div></div>
@@ -415,8 +416,8 @@ $(document).ready(function(){initNavTree('dbrequest_8c_source.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_fc0ace0c67d2a14fd3b71827d0f455de.html">REST_API_in_C</a></li><li class="navelem"><a class="el" href="dir_c48b0ca71bee42b15a2945a0ae5797e2.html">libs</a></li><li class="navelem"><a class="el" href="dbrequest_8c.html">dbrequest.c</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 12:24:22 for IoT hub Implementation by
+    <li class="navelem"><a class="el" href="dir_edaed777a13e9196bfe1f13ee27ced16.html">IoTHubImplementation</a></li><li class="navelem"><a class="el" href="dir_2c3ed11286edd76d36653cadcb9a083d.html">libs</a></li><li class="navelem"><a class="el" href="dbrequest_8c.html">dbrequest.c</a></li>
+    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

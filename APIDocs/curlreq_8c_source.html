@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>IoT hub Implementation: REST_API_in_C/libs/curlreq.c Source File</title>
+<title>IoT hub Implementation: IoTHubImplementation/libs/curlreq.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -91,7 +92,7 @@ $(document).ready(function(){initNavTree('curlreq_8c_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -151,7 +152,7 @@ $(document).ready(function(){initNavTree('curlreq_8c_source.html','');});
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a>[0]=<span class="charliteral">&#39;\0&#39;</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">res_cookie</a>[0]=<span class="charliteral">&#39;\0&#39;</span>;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <a class="code" href="structbuf__t.html">buf_t</a> *buf = <a class="code" href="make_buffer_8h.html#aff38a36b943172aa2cee549284c31608">buf_size</a>(NULL, <a class="code" href="json_parser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <a class="code" href="structbuf__t.html">buf_t</a> *buf = <a class="code" href="makeBuffer_8h.html#aff38a36b943172aa2cee549284c31608">buf_size</a>(NULL, <a class="code" href="jsonParser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        CURLcode res;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                        curl_global_init(CURL_GLOBAL_ALL);</div>
@@ -162,7 +163,7 @@ $(document).ready(function(){initNavTree('curlreq_8c_source.html','');});
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                        curl_easy_setopt(curl, CURLOPT_URL,url);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        curl_easy_setopt(curl, CURLOPT_POST, 1);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                        curl_easy_setopt(curl, CURLOPT_POSTFIELDS,reqbody);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, <a class="code" href="json_parser_8h.html#ac3dba20f616625cc143582a4231f92a9">fetch_data</a>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, <a class="code" href="jsonParser_8h.html#ac3dba20f616625cc143582a4231f92a9">fetch_data</a>);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        curl_easy_setopt(curl, CURLOPT_WRITEDATA, buf);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, <a class="code" href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a>);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        curl_easy_setopt(curl, CURLOPT_HEADERDATA,&amp;cookiec);</div>
@@ -177,7 +178,7 @@ $(document).ready(function(){initNavTree('curlreq_8c_source.html','');});
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                         curl_easy_cleanup(curl);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                         <span class="keywordtype">char</span> *jsonstr = <a class="code" href="make_buffer_8h.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a>(buf);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                         <span class="keywordtype">char</span> *jsonstr = <a class="code" href="makeBuffer_8h.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a>(buf);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                         free(buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                         free(buf);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                         strcpy(res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a>,jsonstr);</div>
@@ -191,18 +192,18 @@ $(document).ready(function(){initNavTree('curlreq_8c_source.html','');});
 <div class="ttc" id="curlreq_8h_html"><div class="ttname"><a href="curlreq_8h.html">curlreq.h</a></div></div>
 <div class="ttc" id="structresponse__data_html_a0ac2e8a7db412ad8291b2bfbea96215e"><div class="ttname"><a href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">response_data::res_cookie</a></div><div class="ttdeci">char * res_cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00039">dbrequest.h:39</a></div></div>
 <div class="ttc" id="structurl__data_html_ad3a5fe9c035fd8d6821363df1ce77725"><div class="ttname"><a href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">url_data::data</a></div><div class="ttdeci">char * data</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00027">dbrequest.h:27</a></div></div>
-<div class="ttc" id="make_buffer_8h_html_aff38a36b943172aa2cee549284c31608"><div class="ttname"><a href="make_buffer_8h.html#aff38a36b943172aa2cee549284c31608">buf_size</a></div><div class="ttdeci">buf_t * buf_size(buf_t *buf, size_t len)</div><div class="ttdef"><b>Definition:</b> <a href="make_buffer_8c_source.html#l00008">makeBuffer.c:8</a></div></div>
-<div class="ttc" id="structbuf__t_html"><div class="ttname"><a href="structbuf__t.html">buf_t</a></div><div class="ttdef"><b>Definition:</b> <a href="make_buffer_8h_source.html#l00010">makeBuffer.h:10</a></div></div>
+<div class="ttc" id="jsonParser_8h_html_ac3dba20f616625cc143582a4231f92a9"><div class="ttname"><a href="jsonParser_8h.html#ac3dba20f616625cc143582a4231f92a9">fetch_data</a></div><div class="ttdeci">size_t fetch_data(void *buffer, size_t size, size_t nmemb, void *userp)</div><div class="ttdef"><b>Definition:</b> <a href="jsonParser_8c_source.html#l00179">jsonParser.c:179</a></div></div>
+<div class="ttc" id="jsonParser_8h_html_a6b20d41d6252e9871430c242cb1a56e7"><div class="ttname"><a href="jsonParser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></div><div class="ttdeci">#define BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="jsonParser_8h_source.html#l00010">jsonParser.h:10</a></div></div>
+<div class="ttc" id="structbuf__t_html"><div class="ttname"><a href="structbuf__t.html">buf_t</a></div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00010">makeBuffer.h:10</a></div></div>
 <div class="ttc" id="curlreq_8c_html_a092dd82f3a79070024ccc501ca2118bd"><div class="ttname"><a href="curlreq_8c.html#a092dd82f3a79070024ccc501ca2118bd">makeCURLRequest</a></div><div class="ttdeci">struct response_data * makeCURLRequest(char *reqbody, char *cookie, int memorySize, char *url)</div><div class="ttdef"><b>Definition:</b> <a href="curlreq_8c_source.html#l00004">curlreq.c:4</a></div></div>
-<div class="ttc" id="json_parser_8h_html_ac3dba20f616625cc143582a4231f92a9"><div class="ttname"><a href="json_parser_8h.html#ac3dba20f616625cc143582a4231f92a9">fetch_data</a></div><div class="ttdeci">size_t fetch_data(void *buffer, size_t size, size_t nmemb, void *userp)</div><div class="ttdef"><b>Definition:</b> <a href="json_parser_8c_source.html#l00179">jsonParser.c:179</a></div></div>
-<div class="ttc" id="make_buffer_8h_html_a1e09f4a3fb01ff652e081e710219d114"><div class="ttname"><a href="make_buffer_8h.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a></div><div class="ttdeci">char * buf_tostr(buf_t *buf)</div><div class="ttdef"><b>Definition:</b> <a href="make_buffer_8c_source.html#l00038">makeBuffer.c:38</a></div></div>
 <div class="ttc" id="structsite__cookie_html_a5b008e1c9b9df5a724dd286d950eb30a"><div class="ttname"><a href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">site_cookie::cookie</a></div><div class="ttdeci">char * cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00015">dbrequest.h:15</a></div></div>
 <div class="ttc" id="structsite__cookie_html"><div class="ttname"><a href="structsite__cookie.html">site_cookie</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00012">dbrequest.h:12</a></div></div>
 <div class="ttc" id="structresponse__data_html_ab174699ff2ab522934bc769b1b082856"><div class="ttname"><a href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">response_data::res_body</a></div><div class="ttdeci">char * res_body</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00038">dbrequest.h:38</a></div></div>
 <div class="ttc" id="structurl__data_html_a580f76d1bdde5b56bb7454e89a0d1ba8"><div class="ttname"><a href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">url_data::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00026">dbrequest.h:26</a></div></div>
-<div class="ttc" id="json_parser_8h_html_a6b20d41d6252e9871430c242cb1a56e7"><div class="ttname"><a href="json_parser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></div><div class="ttdeci">#define BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="json_parser_8h_source.html#l00010">jsonParser.h:10</a></div></div>
-<div class="ttc" id="structbuf__t_html_ab5f0f41ffcf996c3ae5aef6cd55b46e7"><div class="ttname"><a href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">buf_t::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definition:</b> <a href="make_buffer_8h_source.html#l00014">makeBuffer.h:14</a></div></div>
+<div class="ttc" id="makeBuffer_8h_html_a1e09f4a3fb01ff652e081e710219d114"><div class="ttname"><a href="makeBuffer_8h.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a></div><div class="ttdeci">char * buf_tostr(buf_t *buf)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00038">makeBuffer.c:38</a></div></div>
+<div class="ttc" id="structbuf__t_html_ab5f0f41ffcf996c3ae5aef6cd55b46e7"><div class="ttname"><a href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">buf_t::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00014">makeBuffer.h:14</a></div></div>
 <div class="ttc" id="structresponse__data_html"><div class="ttname"><a href="structresponse__data.html">response_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00036">dbrequest.h:36</a></div></div>
+<div class="ttc" id="makeBuffer_8h_html_aff38a36b943172aa2cee549284c31608"><div class="ttname"><a href="makeBuffer_8h.html#aff38a36b943172aa2cee549284c31608">buf_size</a></div><div class="ttdeci">buf_t * buf_size(buf_t *buf, size_t len)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00008">makeBuffer.c:8</a></div></div>
 <div class="ttc" id="structurl__data_html"><div class="ttname"><a href="structurl__data.html">url_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00024">dbrequest.h:24</a></div></div>
 <div class="ttc" id="structsite__cookie_html_a993673972e04f0a8dc5821e4fc6d5aa9"><div class="ttname"><a href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">site_cookie::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00014">dbrequest.h:14</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_ae96066b1338776fba2f9281bbfe96560"><div class="ttname"><a href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a></div><div class="ttdeci">size_t header_callback(char *buffer, size_t size, size_t nitems, struct site_cookie *cookiec)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00177">dbrequest.c:177</a></div></div>
@@ -211,8 +212,8 @@ $(document).ready(function(){initNavTree('curlreq_8c_source.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_fc0ace0c67d2a14fd3b71827d0f455de.html">REST_API_in_C</a></li><li class="navelem"><a class="el" href="dir_c48b0ca71bee42b15a2945a0ae5797e2.html">libs</a></li><li class="navelem"><a class="el" href="curlreq_8c.html">curlreq.c</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 12:24:22 for IoT hub Implementation by
+    <li class="navelem"><a class="el" href="dir_edaed777a13e9196bfe1f13ee27ced16.html">IoTHubImplementation</a></li><li class="navelem"><a class="el" href="dir_2c3ed11286edd76d36653cadcb9a083d.html">libs</a></li><li class="navelem"><a class="el" href="curlreq_8c.html">curlreq.c</a></li>
+    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

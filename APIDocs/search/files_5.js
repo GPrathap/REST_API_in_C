@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initconfig_2ec',['initConfig.c',['../init_config_8c.html',1,'']]]
+  ['initconfig_2ec',['initConfig.c',['../initConfig_8c.html',1,'']]]
 ];

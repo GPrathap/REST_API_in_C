@@ -195,3 +195,4 @@ size_t header_callback(char *buffer,size_t size,size_t nitems,struct site_cookie
 #define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
 #define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
 #define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
+#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"

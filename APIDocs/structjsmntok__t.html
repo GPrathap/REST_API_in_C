@@ -45,7 +45,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -67,9 +68,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -92,7 +93,7 @@ $(document).ready(function(){initNavTree('structjsmntok__t.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,18 +104,24 @@ $(document).ready(function(){initNavTree('structjsmntok__t.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structjsmntok__t-members.html">List of all members</a>  </div>
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
 <div class="title">jsmntok_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for jsmntok_t:</div>
+<div class="dyncontent">
+<div class="center"><img src="structjsmntok__t__coll__graph.png" border="0" usemap="#jsmntok__t_coll__map" alt="Collaboration graph"/></div>
+<map name="jsmntok__t_coll__map" id="jsmntok__t_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:ac03dbd6b83cbcd979eb64702d5b9943e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h.html#a065320719769f9dc1fbe30094e52802f">jsmntype_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjsmntok__t.html#ac03dbd6b83cbcd979eb64702d5b9943e">type</a></td></tr>
+Data Fields</h2></td></tr>
+<tr class="memitem:ac03dbd6b83cbcd979eb64702d5b9943e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h.html#a065320719769f9dc1fbe30094e52802f">jsmntype_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjsmntok__t.html#ac03dbd6b83cbcd979eb64702d5b9943e">type</a></td></tr>
 <tr class="separator:ac03dbd6b83cbcd979eb64702d5b9943e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a8f55d0095f268ce8e224fe1234acd0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjsmntok__t.html#a0a8f55d0095f268ce8e224fe1234acd0">start</a></td></tr>
 <tr class="separator:a0a8f55d0095f268ce8e224fe1234acd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,8 +141,8 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html#l00035">35</a> of file <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
+<p>Definition at line <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html#l00035">35</a> of file <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
+</div><h2 class="groupheader">Field Documentation</h2>
 <a class="anchor" id="ab49e0369f39e9b6174141e7f5bde5996"></a>
 <div class="memitem">
 <div class="memproto">
@@ -146,7 +153,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html#l00038">38</a> of file <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
+<p>Definition at line <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html#l00038">38</a> of file <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
 
 </div>
 </div>
@@ -160,7 +167,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html#l00039">39</a> of file <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
+<p>Definition at line <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html#l00039">39</a> of file <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
 
 </div>
 </div>
@@ -174,7 +181,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html#l00037">37</a> of file <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
+<p>Definition at line <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html#l00037">37</a> of file <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
 
 </div>
 </div>
@@ -183,17 +190,17 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h.html#a065320719769f9dc1fbe30094e52802f">jsmntype_t</a> jsmntok_t::type</td>
+          <td class="memname"><a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h.html#a065320719769f9dc1fbe30094e52802f">jsmntype_t</a> jsmntok_t::type</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html#l00036">36</a> of file <a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
+<p>Definition at line <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html#l00036">36</a> of file <a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html">jsmn.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>REST_API_in_C/libs/externalLibs/headerfile/<a class="el" href="libs_2external_libs_2headerfile_2jsmn_8h_source.html">jsmn.h</a></li>
+<li>IoTHubImplementation/libs/externalLibs/headerfile/<a class="el" href="libs_2externalLibs_2headerfile_2jsmn_8h_source.html">jsmn.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -201,7 +208,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structjsmntok__t.html">jsmntok_t</a></li>
-    <li class="footer">Generated on Mon Feb 16 2015 12:24:22 for IoT hub Implementation by
+    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

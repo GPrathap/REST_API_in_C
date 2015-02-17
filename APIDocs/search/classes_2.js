@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyvalue_5fstruct',['keyValue_struct',['../structkey_value__struct.html',1,'']]]
+  ['keyvalue_5fstruct',['keyValue_struct',['../structkeyValue__struct.html',1,'']]]
 ];
