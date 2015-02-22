@@ -2,10 +2,11 @@
 #include "../../resources/externalLibs/headerfile/uthash.h"
 #define KEY_LENGTH 128
 #define VALUE_LENGTH 512
+
 /**
  * This struct is used to save one key-value pair
  * @param		key    this field should be  the key
- * @param		value  value with respec to key
+ * @param		value  value with respect to key
  * @param		hh     makes this structure hashable
  */
 struct keyValue_struct {
@@ -25,14 +26,14 @@ struct keyValue_struct {
 char *str_replace(const char *str, const char *old, const char *newOne);
 
 /**
- * Spliting string into n number of parts
+ * Spiting string into n number of parts
  * @param		a_str    string is to be splitted
  * @param		a_delim  setting a delimiter
  */
 char** str_split(char* a_str, const char a_delim);
 
 /**
- * Addind key-value pair to list(hashmap)
+ * Adding key-value pair to list(hashmap)
  * @param		key    key
  * @param		value  value
  * @param		list   pointer to hashmap
@@ -63,18 +64,19 @@ struct keyValue_struct *getValue(char* key,struct keyValue_struct** list);
  * adding key-value pairs to hashmap
  * @param		data        json string or query string
  * @param       splitCon1   first splitting string into parts using this
- * @param       splitCon2   splited strings are splited using this
+ * @param       splitCon2   spited strings are spited using this
  * @param		list pointer to hashmap
  */
 void add_toList(struct keyValue_struct** list,char* data,char splitCon1,char splitCon2);
 
 /**
- * Removing withspaces
+ * Removing whitespaces
  * @param		source string is to be modified
  */
 void str_removeSpace(char* source);
+
 /**
- * Removing withspaces
+ * Removing whitespaces
  * @param	str string is to be modified
  */
 char *str_trim(char *str);

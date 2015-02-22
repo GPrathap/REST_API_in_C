@@ -12,7 +12,7 @@
 /**
  * make curl request
  * @param		reqbody        request body coming from client side
- * @param       cookie         previos session cookie
+ * @param       cookie         previous session cookie
  * @param       memorySize     how many bytes are to be dynamically allocated for response body
  * @param		url            destination url
  */

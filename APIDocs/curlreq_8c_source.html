@@ -106,114 +106,112 @@ $(document).ready(function(){initNavTree('curlreq_8c_source.html','');});
 <div class="title">curlreq.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="curlreq_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="curlreq_8h.html">./headerfile/curlreq.h</a>&quot;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="curlreq_8h.html#a092dd82f3a79070024ccc501ca2118bd">    4</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structresponse__data.html">response_data</a> *<a class="code" href="curlreq_8c.html#a092dd82f3a79070024ccc501ca2118bd">makeCURLRequest</a>(<span class="keywordtype">char</span>* reqbody,<span class="keywordtype">char</span>* cookie,<span class="keywordtype">int</span> memorySize,<span class="keywordtype">char</span>* url){</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                CURL *curl;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;                        <span class="keyword">struct </span><a class="code" href="structurl__data.html">url_data</a> data;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;                        data.<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a> = 0;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;                        data.<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a> = malloc(memorySize); <span class="comment">/* reasonable size initial buffer */</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                        <span class="keywordflow">if</span>(NULL == data.<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>) {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                                    fprintf(stderr, <span class="stringliteral">&quot;Failed to allocate memory.\n&quot;</span>);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                        }</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                        <span class="keyword">struct </span><a class="code" href="structsite__cookie.html">site_cookie</a> cookiec;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                        cookiec.<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=0;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                        cookiec.<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                        <span class="keywordflow">if</span>(NULL == cookiec.<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>) {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                                    fprintf(stderr, <span class="stringliteral">&quot;Failed to allocate memory.\n&quot;</span>);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                        }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                        <span class="keyword">struct </span><a class="code" href="structresponse__data.html">response_data</a>* res_data;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                        res_data=malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structresponse__data.html">response_data</a>));</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a>=malloc(1000);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">res_cookie</a>=malloc(256);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                        <span class="keywordflow">if</span>(NULL == res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a> || NULL==res_data-&gt;<a class="code" href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">res_cookie</a>) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                                    fprintf(stderr, <span class="stringliteral">&quot;Failed to allocate memory.\n&quot;</span>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                        }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                         <span class="keyword">struct </span>curl_slist *headers = NULL;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                         headers = curl_slist_append(headers, <span class="stringliteral">&quot;Accept: Subscription/x-www-form-urlencoded&quot;</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                         headers = curl_slist_append(headers, <span class="stringliteral">&quot;Content-Type: Subscription/x-www-form-urlencoded&quot;</span>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                         headers = curl_slist_append(headers, <span class="stringliteral">&quot;charsets: utf-8&quot;</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                        data.<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                        cookiec.<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>[0]= <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a>[0]=<span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">res_cookie</a>[0]=<span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <a class="code" href="structbuf__t.html">buf_t</a> *buf = <a class="code" href="makeBuffer_8h.html#aff38a36b943172aa2cee549284c31608">buf_size</a>(NULL, <a class="code" href="jsonParser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        CURLcode res;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                        curl_global_init(CURL_GLOBAL_ALL);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        curl = curl_easy_init();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        <span class="comment">//curl_easy_setopt(curl,CURLOPT_HTTPHEADER,headers);</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                        curl_easy_setopt(curl, CURLOPT_URL,url);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        curl_easy_setopt(curl, CURLOPT_POST, 1);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                        curl_easy_setopt(curl, CURLOPT_POSTFIELDS,reqbody);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, <a class="code" href="jsonParser_8h.html#ac3dba20f616625cc143582a4231f92a9">fetch_data</a>);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        curl_easy_setopt(curl, CURLOPT_WRITEDATA, buf);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, <a class="code" href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        curl_easy_setopt(curl, CURLOPT_HEADERDATA,&amp;cookiec);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        curl_easy_setopt(curl, CURLOPT_COOKIE,cookie);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        res=curl_easy_perform(curl);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        <span class="keywordflow">if</span>(res != CURLE_OK){</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                            fprintf(stderr, <span class="stringliteral">&quot;curl_easy_perform() failed: %s\n&quot;</span>,curl_easy_strerror(res));</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<a href="curlreq_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  WSO2 Inc. licenses this file to you under the Apache License,</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *  Version 2.0 (the &quot;License&quot;); you may not use this file except</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *  in compliance with the License.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *  You may obtain a copy of the License at</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *  http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *  Unless required by applicable law or agreed to in writing,</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *  software distributed under the License is distributed on an</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *  &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *  KIND, either express or implied. See the License for the</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *  specific language governing permissions and limitations</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *  under the License.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="curlreq_8h.html">./headerfile/curlreq.h</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="curlreq_8h.html#a092dd82f3a79070024ccc501ca2118bd">   21</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structresponse__data.html">response_data</a> *<a class="code" href="curlreq_8c.html#a092dd82f3a79070024ccc501ca2118bd">makeCURLRequest</a>(<span class="keywordtype">char</span>* reqbody,<span class="keywordtype">char</span>* cookie,<span class="keywordtype">int</span> memorySize,<span class="keywordtype">char</span>* url){</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                CURL *curl;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                        <span class="keyword">struct </span><a class="code" href="structurl__data.html">url_data</a> data;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                        data.<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a> = 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                        data.<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a> = malloc(memorySize);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                        <span class="keywordflow">if</span>(NULL == data.<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>) {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                    fprintf(stderr, <span class="stringliteral">&quot;Failed to allocate memory.\n&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                        }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                        <span class="keyword">struct </span><a class="code" href="structsite__cookie.html">site_cookie</a> cookiec;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                        cookiec.<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=0;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                        cookiec.<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                        <span class="keywordflow">if</span>(NULL == cookiec.<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                                    fprintf(stderr, <span class="stringliteral">&quot;Failed to allocate memory.\n&quot;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                        }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                        <span class="keyword">struct </span><a class="code" href="structresponse__data.html">response_data</a>* res_data;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                        res_data=malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structresponse__data.html">response_data</a>));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a>=malloc(1000);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">res_cookie</a>=malloc(256);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                        <span class="keywordflow">if</span>(NULL == res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a> || NULL==res_data-&gt;<a class="code" href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">res_cookie</a>) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                    fprintf(stderr, <span class="stringliteral">&quot;Failed to allocate memory.\n&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                        }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                         <span class="keyword">struct </span>curl_slist *headers = NULL;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                         headers = curl_slist_append(headers, <span class="stringliteral">&quot;Accept: Subscription/x-www-form-urlencoded&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                         headers = curl_slist_append(headers, <span class="stringliteral">&quot;Content-Type: Subscription/x-www-form-urlencoded&quot;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                         headers = curl_slist_append(headers, <span class="stringliteral">&quot;charsets: utf-8&quot;</span>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                        data.<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                        cookiec.<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>[0]= <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a>[0]=<span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                        res_data-&gt;<a class="code" href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">res_cookie</a>[0]=<span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        <a class="code" href="structbuf__t.html">buf_t</a> *buf = <a class="code" href="makeBuffer_8h.html#aff38a36b943172aa2cee549284c31608">buf_size</a>(NULL, <a class="code" href="jsonParser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                        CURLcode res;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        curl_global_init(CURL_GLOBAL_ALL);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                        curl = curl_easy_init();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        curl_easy_setopt(curl, CURLOPT_URL,url);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        curl_easy_setopt(curl, CURLOPT_POST, 1);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        curl_easy_setopt(curl, CURLOPT_POSTFIELDS,reqbody);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, <a class="code" href="jsonParser_8h.html#ac3dba20f616625cc143582a4231f92a9">fetch_data</a>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        curl_easy_setopt(curl, CURLOPT_WRITEDATA, buf);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, <a class="code" href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        curl_easy_setopt(curl, CURLOPT_HEADERDATA,&amp;cookiec);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        curl_easy_setopt(curl, CURLOPT_COOKIE,cookie);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        res=curl_easy_perform(curl);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        <span class="keywordflow">if</span>(res != CURLE_OK){</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                            fprintf(stderr, <span class="stringliteral">&quot;curl_easy_perform() failed: %s\n&quot;</span>,curl_easy_strerror(res));</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                        }</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                         curl_easy_cleanup(curl);</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                         <span class="keywordtype">char</span> *jsonstr = <a class="code" href="makeBuffer_8h.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a>(buf);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                         free(buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                         free(buf);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                         strcpy(res_data-&gt;<a class="code" href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">res_body</a>,jsonstr);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                         strcpy(res_data-&gt;<a class="code" href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">res_cookie</a>,cookiec.<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="keywordflow">return</span> res_data;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">return</span> res_data;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
 <div class="ttc" id="curlreq_8h_html"><div class="ttname"><a href="curlreq_8h.html">curlreq.h</a></div></div>
-<div class="ttc" id="structresponse__data_html_a0ac2e8a7db412ad8291b2bfbea96215e"><div class="ttname"><a href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">response_data::res_cookie</a></div><div class="ttdeci">char * res_cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00039">dbrequest.h:39</a></div></div>
-<div class="ttc" id="structurl__data_html_ad3a5fe9c035fd8d6821363df1ce77725"><div class="ttname"><a href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">url_data::data</a></div><div class="ttdeci">char * data</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00027">dbrequest.h:27</a></div></div>
-<div class="ttc" id="jsonParser_8h_html_ac3dba20f616625cc143582a4231f92a9"><div class="ttname"><a href="jsonParser_8h.html#ac3dba20f616625cc143582a4231f92a9">fetch_data</a></div><div class="ttdeci">size_t fetch_data(void *buffer, size_t size, size_t nmemb, void *userp)</div><div class="ttdef"><b>Definition:</b> <a href="jsonParser_8c_source.html#l00179">jsonParser.c:179</a></div></div>
-<div class="ttc" id="jsonParser_8h_html_a6b20d41d6252e9871430c242cb1a56e7"><div class="ttname"><a href="jsonParser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></div><div class="ttdeci">#define BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="jsonParser_8h_source.html#l00010">jsonParser.h:10</a></div></div>
-<div class="ttc" id="structbuf__t_html"><div class="ttname"><a href="structbuf__t.html">buf_t</a></div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00010">makeBuffer.h:10</a></div></div>
-<div class="ttc" id="curlreq_8c_html_a092dd82f3a79070024ccc501ca2118bd"><div class="ttname"><a href="curlreq_8c.html#a092dd82f3a79070024ccc501ca2118bd">makeCURLRequest</a></div><div class="ttdeci">struct response_data * makeCURLRequest(char *reqbody, char *cookie, int memorySize, char *url)</div><div class="ttdef"><b>Definition:</b> <a href="curlreq_8c_source.html#l00004">curlreq.c:4</a></div></div>
-<div class="ttc" id="structsite__cookie_html_a5b008e1c9b9df5a724dd286d950eb30a"><div class="ttname"><a href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">site_cookie::cookie</a></div><div class="ttdeci">char * cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00015">dbrequest.h:15</a></div></div>
-<div class="ttc" id="structsite__cookie_html"><div class="ttname"><a href="structsite__cookie.html">site_cookie</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00012">dbrequest.h:12</a></div></div>
-<div class="ttc" id="structresponse__data_html_ab174699ff2ab522934bc769b1b082856"><div class="ttname"><a href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">response_data::res_body</a></div><div class="ttdeci">char * res_body</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00038">dbrequest.h:38</a></div></div>
-<div class="ttc" id="structurl__data_html_a580f76d1bdde5b56bb7454e89a0d1ba8"><div class="ttname"><a href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">url_data::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00026">dbrequest.h:26</a></div></div>
-<div class="ttc" id="makeBuffer_8h_html_a1e09f4a3fb01ff652e081e710219d114"><div class="ttname"><a href="makeBuffer_8h.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a></div><div class="ttdeci">char * buf_tostr(buf_t *buf)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00038">makeBuffer.c:38</a></div></div>
-<div class="ttc" id="structbuf__t_html_ab5f0f41ffcf996c3ae5aef6cd55b46e7"><div class="ttname"><a href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">buf_t::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00014">makeBuffer.h:14</a></div></div>
-<div class="ttc" id="structresponse__data_html"><div class="ttname"><a href="structresponse__data.html">response_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00036">dbrequest.h:36</a></div></div>
-<div class="ttc" id="makeBuffer_8h_html_aff38a36b943172aa2cee549284c31608"><div class="ttname"><a href="makeBuffer_8h.html#aff38a36b943172aa2cee549284c31608">buf_size</a></div><div class="ttdeci">buf_t * buf_size(buf_t *buf, size_t len)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00008">makeBuffer.c:8</a></div></div>
-<div class="ttc" id="structurl__data_html"><div class="ttname"><a href="structurl__data.html">url_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00024">dbrequest.h:24</a></div></div>
-<div class="ttc" id="structsite__cookie_html_a993673972e04f0a8dc5821e4fc6d5aa9"><div class="ttname"><a href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">site_cookie::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00014">dbrequest.h:14</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_ae96066b1338776fba2f9281bbfe96560"><div class="ttname"><a href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a></div><div class="ttdeci">size_t header_callback(char *buffer, size_t size, size_t nitems, struct site_cookie *cookiec)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00177">dbrequest.c:177</a></div></div>
+<div class="ttc" id="structresponse__data_html_a0ac2e8a7db412ad8291b2bfbea96215e"><div class="ttname"><a href="structresponse__data.html#a0ac2e8a7db412ad8291b2bfbea96215e">response_data::res_cookie</a></div><div class="ttdeci">char * res_cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00056">dbrequest.h:56</a></div></div>
+<div class="ttc" id="structurl__data_html_ad3a5fe9c035fd8d6821363df1ce77725"><div class="ttname"><a href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">url_data::data</a></div><div class="ttdeci">char * data</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00044">dbrequest.h:44</a></div></div>
+<div class="ttc" id="jsonParser_8h_html_ac3dba20f616625cc143582a4231f92a9"><div class="ttname"><a href="jsonParser_8h.html#ac3dba20f616625cc143582a4231f92a9">fetch_data</a></div><div class="ttdeci">size_t fetch_data(void *buffer, size_t size, size_t nmemb, void *userp)</div><div class="ttdef"><b>Definition:</b> <a href="jsonParser_8c_source.html#l00168">jsonParser.c:168</a></div></div>
+<div class="ttc" id="jsonParser_8h_html_a6b20d41d6252e9871430c242cb1a56e7"><div class="ttname"><a href="jsonParser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></div><div class="ttdeci">#define BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="jsonParser_8h_source.html#l00027">jsonParser.h:27</a></div></div>
+<div class="ttc" id="structbuf__t_html"><div class="ttname"><a href="structbuf__t.html">buf_t</a></div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00028">makeBuffer.h:28</a></div></div>
+<div class="ttc" id="curlreq_8c_html_a092dd82f3a79070024ccc501ca2118bd"><div class="ttname"><a href="curlreq_8c.html#a092dd82f3a79070024ccc501ca2118bd">makeCURLRequest</a></div><div class="ttdeci">struct response_data * makeCURLRequest(char *reqbody, char *cookie, int memorySize, char *url)</div><div class="ttdef"><b>Definition:</b> <a href="curlreq_8c_source.html#l00021">curlreq.c:21</a></div></div>
+<div class="ttc" id="structsite__cookie_html_a5b008e1c9b9df5a724dd286d950eb30a"><div class="ttname"><a href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">site_cookie::cookie</a></div><div class="ttdeci">char * cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00032">dbrequest.h:32</a></div></div>
+<div class="ttc" id="structsite__cookie_html"><div class="ttname"><a href="structsite__cookie.html">site_cookie</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00029">dbrequest.h:29</a></div></div>
+<div class="ttc" id="structresponse__data_html_ab174699ff2ab522934bc769b1b082856"><div class="ttname"><a href="structresponse__data.html#ab174699ff2ab522934bc769b1b082856">response_data::res_body</a></div><div class="ttdeci">char * res_body</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00055">dbrequest.h:55</a></div></div>
+<div class="ttc" id="structurl__data_html_a580f76d1bdde5b56bb7454e89a0d1ba8"><div class="ttname"><a href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">url_data::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00043">dbrequest.h:43</a></div></div>
+<div class="ttc" id="makeBuffer_8h_html_a1e09f4a3fb01ff652e081e710219d114"><div class="ttname"><a href="makeBuffer_8h.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a></div><div class="ttdeci">char * buf_tostr(buf_t *buf)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00049">makeBuffer.c:49</a></div></div>
+<div class="ttc" id="structbuf__t_html_ab5f0f41ffcf996c3ae5aef6cd55b46e7"><div class="ttname"><a href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">buf_t::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00032">makeBuffer.h:32</a></div></div>
+<div class="ttc" id="structresponse__data_html"><div class="ttname"><a href="structresponse__data.html">response_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00053">dbrequest.h:53</a></div></div>
+<div class="ttc" id="makeBuffer_8h_html_aff38a36b943172aa2cee549284c31608"><div class="ttname"><a href="makeBuffer_8h.html#aff38a36b943172aa2cee549284c31608">buf_size</a></div><div class="ttdeci">buf_t * buf_size(buf_t *buf, size_t len)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00023">makeBuffer.c:23</a></div></div>
+<div class="ttc" id="structurl__data_html"><div class="ttname"><a href="structurl__data.html">url_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00041">dbrequest.h:41</a></div></div>
+<div class="ttc" id="structsite__cookie_html_a993673972e04f0a8dc5821e4fc6d5aa9"><div class="ttname"><a href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">site_cookie::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00031">dbrequest.h:31</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_ae96066b1338776fba2f9281bbfe96560"><div class="ttname"><a href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a></div><div class="ttdeci">size_t header_callback(char *buffer, size_t size, size_t nitems, struct site_cookie *cookiec)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00175">dbrequest.c:175</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_edaed777a13e9196bfe1f13ee27ced16.html">IoTHubImplementation</a></li><li class="navelem"><a class="el" href="dir_2c3ed11286edd76d36653cadcb9a083d.html">libs</a></li><li class="navelem"><a class="el" href="curlreq_8c.html">curlreq.c</a></li>
-    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
+    <li class="footer">Generated on Sun Feb 22 2015 20:59:00 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

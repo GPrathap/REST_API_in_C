@@ -106,40 +106,52 @@ $(document).ready(function(){initNavTree('randomStringGen_8js_source.html','');}
 <div class="title">randomStringGen.js</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="randomStringGen_8js.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00002"></a><span class="lineno"><a class="line" href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">    2</a></span>&#160;var <a class="code" href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">randomStringGenerator</a>;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<a class="code" href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">randomStringGenerator</a> = <span class="keyword">function</span> () {</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    var randomGen</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    randomGen=<span class="keyword">this</span>,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    randomGen.generateString = <span class="keyword">function</span> (len) {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        var buf = [], chars = <span class="stringliteral">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&#39;</span>, charLen = chars.length;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">for</span> (var i = 0; i &lt; len; ++i) {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            buf.push(chars[randomGen.getRandomInt(0, charLen - 1)]);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        }</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">return</span> buf.join(<span class="stringliteral">&#39;&#39;</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    },</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    randomGen.getRandomInt = <span class="keyword">function</span> (min, max) {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordflow">return</span> Math.floor(Math.random() * (max - min + 1)) + min;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    },</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    randomGen.getRandomString=<span class="keyword">function</span>(len){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> randomGen.generateString(len);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="randomStringGen_8js.html#aa4072ba4b6b56b0fb6f4801f17ab2b34">   34</a></span>&#160;module.exports = <a class="code" href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">randomStringGenerator</a>;</div>
-<div class="ttc" id="randomStringGen_8js_html_a537444d6d5de80fc3215ef6a0624ad8c"><div class="ttname"><a href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">randomStringGenerator</a></div><div class="ttdeci">var randomStringGenerator</div><div class="ttdef"><b>Definition:</b> <a href="randomStringGen_8js_source.html#l00002">randomStringGen.js:2</a></div></div>
+<a href="randomStringGen_8js.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  WSO2 Inc. licenses this file to you under the Apache License,</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *  Version 2.0 (the &quot;License&quot;); you may not use this file except</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *  in compliance with the License.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *  You may obtain a copy of the License at</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *  http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *  Unless required by applicable law or agreed to in writing,</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *  software distributed under the License is distributed on an</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *  &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *  KIND, either express or implied. See the License for the</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *  specific language governing permissions and limitations</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *  under the License.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">   18</a></span>&#160;var <a class="code" href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">randomStringGenerator</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<a class="code" href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">randomStringGenerator</a> = <span class="keyword">function</span> () {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    var randomGen</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    randomGen=<span class="keyword">this</span>,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    randomGen.generateString = <span class="keyword">function</span> (len) {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        var buf = [], chars = <span class="stringliteral">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&#39;</span>, charLen = chars.length;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">for</span> (var i = 0; i &lt; len; ++i) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            buf.push(chars[randomGen.getRandomInt(0, charLen - 1)]);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> buf.join(<span class="stringliteral">&#39;&#39;</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    },</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    randomGen.getRandomInt = <span class="keyword">function</span> (min, max) {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">return</span> Math.floor(Math.random() * (max - min + 1)) + min;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    },</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    randomGen.getRandomString=<span class="keyword">function</span>(len){</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> randomGen.generateString(len);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="randomStringGen_8js.html#aa4072ba4b6b56b0fb6f4801f17ab2b34">   46</a></span>&#160;module.exports = <a class="code" href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">randomStringGenerator</a>;</div>
+<div class="ttc" id="randomStringGen_8js_html_a537444d6d5de80fc3215ef6a0624ad8c"><div class="ttname"><a href="randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c">randomStringGenerator</a></div><div class="ttdeci">var randomStringGenerator</div><div class="ttdef"><b>Definition:</b> <a href="randomStringGen_8js_source.html#l00018">randomStringGen.js:18</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_edaed777a13e9196bfe1f13ee27ced16.html">IoTHubImplementation</a></li><li class="navelem"><a class="el" href="dir_8f851c197aad8ea66422ef17d7a463a3.html">test</a></li><li class="navelem"><a class="el" href="randomStringGen_8js.html">randomStringGen.js</a></li>
-    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
+    <li class="footer">Generated on Sun Feb 22 2015 20:59:00 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

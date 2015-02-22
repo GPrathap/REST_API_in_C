@@ -106,77 +106,81 @@ $(document).ready(function(){initNavTree('initConfig_8c_source.html','');});
 <div class="title">initConfig.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="initConfig_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;../../libs/headerfile/baseStruct.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../../libs/headerfile/dbrequest.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="initConfig_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">    9</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="initConfig_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>(){</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        sqlite3 *db=NULL;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordtype">char</span> *errmsg = 0;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *sql;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* data = <span class="stringliteral">&quot;Callback function called\n&quot;</span>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">int</span> status=<a class="code" href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a>(&amp;db);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span>(status==0)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            printf(<span class="stringliteral">&quot;Can not connect to the database, may be path is not valid. Please check it again or no permission to open it\n&quot;</span>);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        sql=<a class="code" href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a>(<span class="stringliteral">&quot;USER&quot;</span>);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        status=<a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(&amp;db,sql,(<span class="keywordtype">void</span>*)data,&amp;errmsg,<span class="stringliteral">&quot;Normal user table was created\n&quot;</span>,<a class="code" href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a>);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">if</span>(status==0)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            printf(<span class="stringliteral">&quot;Error while creating a user table\n&quot;</span>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        sql=<a class="code" href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a>(<span class="stringliteral">&quot;APIUSER&quot;</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">//sql=createUserTable();</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        status=<a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(&amp;db,sql,(<span class="keywordtype">void</span>*)data,&amp;errmsg,<span class="stringliteral">&quot;API user table was created\n&quot;</span>,<a class="code" href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">if</span>(status==0)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            printf(<span class="stringliteral">&quot;Error while creating API user table\n&quot;</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        sql=<a class="code" href="dbrequest_8c.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">createAPIUser</a>(<span class="stringliteral">&quot;provider1&quot;</span>,<span class="stringliteral">&quot;provider1&quot;</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        status=<a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(&amp;db,sql,(<span class="keywordtype">void</span>*)data,&amp;errmsg,<span class="stringliteral">&quot;Provider1 was inserted into api user table\n&quot;</span>,<a class="code" href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">if</span>(status==0)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            printf(<span class="stringliteral">&quot;Error while creating provider1 user\n&quot;</span>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        printf(<span class="stringliteral">&quot;Initial configuration is done ! \n&quot;</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        sqlite3_close(db);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="ttc" id="dbrequest_8c_html_ab43f5cb0ccfcc7dfccf45753c740e3fa"><div class="ttname"><a href="dbrequest_8c.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">createAPIUser</a></div><div class="ttdeci">char * createAPIUser(char *username, char *password)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00055">dbrequest.c:55</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a417af26e6acadf52a4243b87c6287126"><div class="ttname"><a href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a></div><div class="ttdeci">char * createUserTable(char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00029">dbrequest.c:29</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_afaddd70c00b847c955ae6838ec5d5050"><div class="ttname"><a href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a></div><div class="ttdeci">int connectToDatabase(sqlite3 **db)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00127">dbrequest.c:127</a></div></div>
-<div class="ttc" id="initConfig_8c_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="initConfig_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="initConfig_8c_source.html#l00009">initConfig.c:9</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a9a1120fe8f6fb03e9964d2c76fdff670"><div class="ttname"><a href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a></div><div class="ttdeci">int executeSQLStatement(sqlite3 **db, const char *sql, void *data, char **errmsg, char *successCon, int(*callback)(void *, int, char **, char **))</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00011">dbrequest.c:11</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a6c24911cf6fe0db4a6a8ccfdb2f28488"><div class="ttname"><a href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a></div><div class="ttdeci">int callbackSelect(void *data, int argc, char **argv, char **azColName)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00161">dbrequest.c:161</a></div></div>
+<a href="initConfig_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  WSO2 Inc. licenses this file to you under the Apache License,</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *  Version 2.0 (the &quot;License&quot;); you may not use this file except</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *  in compliance with the License.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *  You may obtain a copy of the License at</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *  http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *  Unless required by applicable law or agreed to in writing,</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *  software distributed under the License is distributed on an</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *  &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *  KIND, either express or implied. See the License for the</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *  specific language governing permissions and limitations</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *  under the License.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;../../libs/headerfile/baseStruct.h&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;../../libs/headerfile/dbrequest.h&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="initConfig_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   26</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="initConfig_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>(){</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        sqlite3 *db=NULL;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">char</span> *errmsg = 0;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *sql;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* data = <span class="stringliteral">&quot;Callback function called\n&quot;</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">int</span> status=<a class="code" href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a>(&amp;db);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">if</span>(status==0)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            printf(<span class="stringliteral">&quot;Can not connect to the database, may be path is not valid. Please check it again or no permission to open it\n&quot;</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        sql=<a class="code" href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a>(<span class="stringliteral">&quot;USER&quot;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        status=<a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(&amp;db,sql,(<span class="keywordtype">void</span>*)data,&amp;errmsg,<span class="stringliteral">&quot;Normal user table was created\n&quot;</span>,<a class="code" href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">if</span>(status==0)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            printf(<span class="stringliteral">&quot;Error while creating a user table\n&quot;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        sql=<a class="code" href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a>(<span class="stringliteral">&quot;APIUSER&quot;</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        status=<a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(&amp;db,sql,(<span class="keywordtype">void</span>*)data,&amp;errmsg,<span class="stringliteral">&quot;API user table was created\n&quot;</span>,<a class="code" href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span>(status==0)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            printf(<span class="stringliteral">&quot;Error while creating API user table\n&quot;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        sql=<a class="code" href="dbrequest_8c.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">createAPIUser</a>(<span class="stringliteral">&quot;provider1&quot;</span>,<span class="stringliteral">&quot;provider1&quot;</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        status=<a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(&amp;db,sql,(<span class="keywordtype">void</span>*)data,&amp;errmsg,<span class="stringliteral">&quot;Provider1 was inserted into api user table\n&quot;</span>,<a class="code" href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span>(status==0)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            printf(<span class="stringliteral">&quot;Error while creating provider1 user\n&quot;</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        printf(<span class="stringliteral">&quot;Initial configuration is done ! \n&quot;</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        sqlite3_close(db);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="ttc" id="dbrequest_8c_html_ab43f5cb0ccfcc7dfccf45753c740e3fa"><div class="ttname"><a href="dbrequest_8c.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">createAPIUser</a></div><div class="ttdeci">char * createAPIUser(char *username, char *password)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00068">dbrequest.c:68</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a417af26e6acadf52a4243b87c6287126"><div class="ttname"><a href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a></div><div class="ttdeci">char * createUserTable(char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00040">dbrequest.c:40</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_afaddd70c00b847c955ae6838ec5d5050"><div class="ttname"><a href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a></div><div class="ttdeci">int connectToDatabase(sqlite3 **db)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00131">dbrequest.c:131</a></div></div>
+<div class="ttc" id="initConfig_8c_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="initConfig_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="initConfig_8c_source.html#l00026">initConfig.c:26</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a9a1120fe8f6fb03e9964d2c76fdff670"><div class="ttname"><a href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a></div><div class="ttdeci">int executeSQLStatement(sqlite3 **db, const char *sql, void *data, char **errmsg, char *successCon, int(*callback)(void *, int, char **, char **))</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00028">dbrequest.c:28</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a6c24911cf6fe0db4a6a8ccfdb2f28488"><div class="ttname"><a href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a></div><div class="ttdeci">int callbackSelect(void *data, int argc, char **argv, char **azColName)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00158">dbrequest.c:158</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_edaed777a13e9196bfe1f13ee27ced16.html">IoTHubImplementation</a></li><li class="navelem"><a class="el" href="dir_5f0ae524172646749af09486a0eb2f36.html">src</a></li><li class="navelem"><a class="el" href="dir_bd9cc6e01721d2e41b9a5f3e94d0037f.html">controllers</a></li><li class="navelem"><a class="el" href="initConfig_8c.html">initConfig.c</a></li>
-    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
+    <li class="footer">Generated on Sun Feb 22 2015 20:59:00 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -106,61 +106,69 @@ $(document).ready(function(){initNavTree('makeBuffer_8c_source.html','');});
 <div class="title">makeBuffer.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="makeBuffer_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="makeBuffer_8h.html">./headerfile/makeBuffer.h</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="makeBuffer_8c.html#aff38a36b943172aa2cee549284c31608">    8</a></span>&#160;<a class="code" href="structbuf__t.html">buf_t</a> * <a class="code" href="makeBuffer_8c.html#aff38a36b943172aa2cee549284c31608">buf_size</a>(<a class="code" href="structbuf__t.html">buf_t</a> *buf, <span class="keywordtype">size_t</span> len)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (buf == NULL)</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        buf = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structbuf__t.html">buf_t</a>));</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a> = NULL;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a> = 0;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    }</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a> = realloc(buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>, len);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span> (buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a> &gt; len)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a> = len;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    buf-&gt;<a class="code" href="structbuf__t.html#a79e1a1e0c9132ebfb4dae0321e912a3d">limit</a> = len;</div>
+<a href="makeBuffer_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  WSO2 Inc. licenses this file to you under the Apache License,</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *  Version 2.0 (the &quot;License&quot;); you may not use this file except</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *  in compliance with the License.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *  You may obtain a copy of the License at</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *  http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *  Unless required by applicable law or agreed to in writing,</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *  software distributed under the License is distributed on an</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *  &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *  KIND, either express or implied. See the License for the</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *  specific language governing permissions and limitations</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *  under the License.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="makeBuffer_8h.html">./headerfile/makeBuffer.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">return</span> buf;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="makeBuffer_8c.html#a191ae59464e5c25a48b5786b0e0b31d6">   26</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="makeBuffer_8c.html#a191ae59464e5c25a48b5786b0e0b31d6">buf_push</a>(<a class="code" href="structbuf__t.html">buf_t</a> *buf, uint8_t c)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>[buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a>++] = c;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="makeBuffer_8c.html#aea353c8b81ff2e7a8075dcfb3f2122fc">   32</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="makeBuffer_8c.html#aea353c8b81ff2e7a8075dcfb3f2122fc">buf_concat</a>(<a class="code" href="structbuf__t.html">buf_t</a> *dst, uint8_t *src, <span class="keywordtype">size_t</span> len)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; len; i++)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        dst-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>[dst-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a>++] = src[i];</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="makeBuffer_8c.html#aff38a36b943172aa2cee549284c31608">   23</a></span>&#160;<a class="code" href="structbuf__t.html">buf_t</a> * <a class="code" href="makeBuffer_8c.html#aff38a36b943172aa2cee549284c31608">buf_size</a>(<a class="code" href="structbuf__t.html">buf_t</a> *buf, <span class="keywordtype">size_t</span> len)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span> (buf == NULL)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        buf = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structbuf__t.html">buf_t</a>));</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a> = NULL;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a> = 0;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a> = realloc(buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>, len);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span> (buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a> &gt; len)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a> = len;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    buf-&gt;<a class="code" href="structbuf__t.html#a79e1a1e0c9132ebfb4dae0321e912a3d">limit</a> = len;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">return</span> buf;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="makeBuffer_8c.html#a1e09f4a3fb01ff652e081e710219d114">   38</a></span>&#160;<span class="keywordtype">char</span> * <a class="code" href="makeBuffer_8c.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a>(<a class="code" href="structbuf__t.html">buf_t</a> *buf)</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="makeBuffer_8c.html#a191ae59464e5c25a48b5786b0e0b31d6">   38</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="makeBuffer_8c.html#a191ae59464e5c25a48b5786b0e0b31d6">buf_push</a>(<a class="code" href="structbuf__t.html">buf_t</a> *buf, uint8_t c)</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">char</span> *str = malloc(buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a> + 1);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>[buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a>++] = c;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    memcpy(str, buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>, buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    str[buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a>] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">return</span> str;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="makeBuffer_8c.html#aea353c8b81ff2e7a8075dcfb3f2122fc">   43</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="makeBuffer_8c.html#aea353c8b81ff2e7a8075dcfb3f2122fc">buf_concat</a>(<a class="code" href="structbuf__t.html">buf_t</a> *dst, uint8_t *src, <span class="keywordtype">size_t</span> len)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; len; i++)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        dst-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>[dst-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a>++] = src[i];</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
-<div class="ttc" id="structbuf__t_html_af449ca7e5d96fcfcad5b7e3ef2df6b25"><div class="ttname"><a href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">buf_t::len</a></div><div class="ttdeci">size_t len</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00012">makeBuffer.h:12</a></div></div>
-<div class="ttc" id="structbuf__t_html_a79e1a1e0c9132ebfb4dae0321e912a3d"><div class="ttname"><a href="structbuf__t.html#a79e1a1e0c9132ebfb4dae0321e912a3d">buf_t::limit</a></div><div class="ttdeci">size_t limit</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00013">makeBuffer.h:13</a></div></div>
-<div class="ttc" id="makeBuffer_8c_html_aea353c8b81ff2e7a8075dcfb3f2122fc"><div class="ttname"><a href="makeBuffer_8c.html#aea353c8b81ff2e7a8075dcfb3f2122fc">buf_concat</a></div><div class="ttdeci">void buf_concat(buf_t *dst, uint8_t *src, size_t len)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00032">makeBuffer.c:32</a></div></div>
-<div class="ttc" id="makeBuffer_8c_html_a191ae59464e5c25a48b5786b0e0b31d6"><div class="ttname"><a href="makeBuffer_8c.html#a191ae59464e5c25a48b5786b0e0b31d6">buf_push</a></div><div class="ttdeci">void buf_push(buf_t *buf, uint8_t c)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00026">makeBuffer.c:26</a></div></div>
-<div class="ttc" id="structbuf__t_html"><div class="ttname"><a href="structbuf__t.html">buf_t</a></div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00010">makeBuffer.h:10</a></div></div>
-<div class="ttc" id="makeBuffer_8c_html_aff38a36b943172aa2cee549284c31608"><div class="ttname"><a href="makeBuffer_8c.html#aff38a36b943172aa2cee549284c31608">buf_size</a></div><div class="ttdeci">buf_t * buf_size(buf_t *buf, size_t len)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00008">makeBuffer.c:8</a></div></div>
-<div class="ttc" id="makeBuffer_8c_html_a1e09f4a3fb01ff652e081e710219d114"><div class="ttname"><a href="makeBuffer_8c.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a></div><div class="ttdeci">char * buf_tostr(buf_t *buf)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00038">makeBuffer.c:38</a></div></div>
-<div class="ttc" id="structbuf__t_html_ab5f0f41ffcf996c3ae5aef6cd55b46e7"><div class="ttname"><a href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">buf_t::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00014">makeBuffer.h:14</a></div></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="makeBuffer_8c.html#a1e09f4a3fb01ff652e081e710219d114">   49</a></span>&#160;<span class="keywordtype">char</span> * <a class="code" href="makeBuffer_8c.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a>(<a class="code" href="structbuf__t.html">buf_t</a> *buf)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">char</span> *str = malloc(buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a> + 1);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    memcpy(str, buf-&gt;<a class="code" href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">data</a>, buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    str[buf-&gt;<a class="code" href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">len</a>] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> str;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="ttc" id="structbuf__t_html_af449ca7e5d96fcfcad5b7e3ef2df6b25"><div class="ttname"><a href="structbuf__t.html#af449ca7e5d96fcfcad5b7e3ef2df6b25">buf_t::len</a></div><div class="ttdeci">size_t len</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00030">makeBuffer.h:30</a></div></div>
+<div class="ttc" id="structbuf__t_html_a79e1a1e0c9132ebfb4dae0321e912a3d"><div class="ttname"><a href="structbuf__t.html#a79e1a1e0c9132ebfb4dae0321e912a3d">buf_t::limit</a></div><div class="ttdeci">size_t limit</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00031">makeBuffer.h:31</a></div></div>
+<div class="ttc" id="makeBuffer_8c_html_aea353c8b81ff2e7a8075dcfb3f2122fc"><div class="ttname"><a href="makeBuffer_8c.html#aea353c8b81ff2e7a8075dcfb3f2122fc">buf_concat</a></div><div class="ttdeci">void buf_concat(buf_t *dst, uint8_t *src, size_t len)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00043">makeBuffer.c:43</a></div></div>
+<div class="ttc" id="makeBuffer_8c_html_a191ae59464e5c25a48b5786b0e0b31d6"><div class="ttname"><a href="makeBuffer_8c.html#a191ae59464e5c25a48b5786b0e0b31d6">buf_push</a></div><div class="ttdeci">void buf_push(buf_t *buf, uint8_t c)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00038">makeBuffer.c:38</a></div></div>
+<div class="ttc" id="structbuf__t_html"><div class="ttname"><a href="structbuf__t.html">buf_t</a></div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00028">makeBuffer.h:28</a></div></div>
+<div class="ttc" id="makeBuffer_8c_html_aff38a36b943172aa2cee549284c31608"><div class="ttname"><a href="makeBuffer_8c.html#aff38a36b943172aa2cee549284c31608">buf_size</a></div><div class="ttdeci">buf_t * buf_size(buf_t *buf, size_t len)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00023">makeBuffer.c:23</a></div></div>
+<div class="ttc" id="makeBuffer_8c_html_a1e09f4a3fb01ff652e081e710219d114"><div class="ttname"><a href="makeBuffer_8c.html#a1e09f4a3fb01ff652e081e710219d114">buf_tostr</a></div><div class="ttdeci">char * buf_tostr(buf_t *buf)</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8c_source.html#l00049">makeBuffer.c:49</a></div></div>
+<div class="ttc" id="structbuf__t_html_ab5f0f41ffcf996c3ae5aef6cd55b46e7"><div class="ttname"><a href="structbuf__t.html#ab5f0f41ffcf996c3ae5aef6cd55b46e7">buf_t::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definition:</b> <a href="makeBuffer_8h_source.html#l00032">makeBuffer.h:32</a></div></div>
 <div class="ttc" id="makeBuffer_8h_html"><div class="ttname"><a href="makeBuffer_8h.html">makeBuffer.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -168,7 +176,7 @@ $(document).ready(function(){initNavTree('makeBuffer_8c_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_edaed777a13e9196bfe1f13ee27ced16.html">IoTHubImplementation</a></li><li class="navelem"><a class="el" href="dir_2c3ed11286edd76d36653cadcb9a083d.html">libs</a></li><li class="navelem"><a class="el" href="makeBuffer_8c.html">makeBuffer.c</a></li>
-    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
+    <li class="footer">Generated on Sun Feb 22 2015 20:59:00 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

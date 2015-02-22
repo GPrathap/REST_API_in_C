@@ -28,8 +28,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "RESTfulRequest_8js.html",
-"libs_2externalLibs_2headerfile_2jsmn_8h.html#ad30df3d9e174dcb6060160f486f2772fa851a0e75343c14a13c6893b3727ead16",
-"signUp_8c.html#a82ff910bc4450e9db920c8a724b0c4c3"
+"mainHeader_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

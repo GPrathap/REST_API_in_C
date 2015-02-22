@@ -1,4 +1,20 @@
-
+/*
+ * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ *  WSO2 Inc. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied. See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 #include <stdio.h>
 #include <curl/curl.h>
 #include <string.h>
@@ -15,6 +31,7 @@
 #include "../controllers/headerfile/mainHeader.h"
 
 struct keyValue_struct*  endpointConfiguration=NULL;
+
 char* initialize(struct keyValue_struct** endpointConfig);
 void* handler(void* args);
 char* getUrl(char* key);
@@ -23,7 +40,6 @@ pthread_t tid[1];
 pthread_mutex_t lock;
 
 int main(){
-
     /*
     initialize database connection(make a persistent connection to database) , structs
     which are to used. Initialization section, which is executed only once.
@@ -36,46 +52,29 @@ int main(){
     If there is a system failure, or the system administrator terminates the process,
     Accept will return -1.
     */
-
     while (FCGI_Accept() >= 0) {
-
-        //set the content type as text/html
         printf("Content-type: text/html\n\n");
         int i=atoi(getenv("CONTENT_LENGTH"));
         char *requestBody;
-        //allocate memory for request body
         requestBody=malloc(i+2);
-        //read from stdin(request body) something of i bytes to requestBody
         int lenOfRead=fread(requestBody,i,1,stdin);
         if(lenOfRead==0){
-
              printf("{error:\"true\",message:\"%s-Request body has been corrupted\"}\n",getenv("REQUEST_METHOD"));
              return 0;
-
         }
-
-        //handle request according to the request action
-        //initialize the thread
         if (pthread_mutex_init(&lock, NULL) != 0)
         {
              printf("{error:\"true\",message:\"Internal server error-a thread initialization error\"}\n");
              return 0;
         }
-        //create a thread
         err = pthread_create(&(tid[0]), NULL, &handler,(void*)requestBody);
         if (err != 0){
             printf("{error:\"true\",message:\"Internal server error- thread creation error due to not enough storage\"}\n");
         }
-        //wait until thread is finished
         pthread_join(tid[0], NULL);
-        //finally destroy the lock
         pthread_mutex_destroy(&lock);
-
-        // handler((void*)requestBody);
     }
-
     return 0;
-
 }
 
 /**
@@ -84,7 +83,6 @@ int main(){
 */
 char* getUrl(char* key) {
     struct keyValue_struct *s;
-    //travel through hashmap and print all key-value pairs
     for(s=endpointConfiguration; s != NULL; s=(struct keyValue_struct*)(s->hh.next)) {
                 if(strcmp(key,s->key)==0){
                          return s->value;
@@ -98,11 +96,8 @@ char* getUrl(char* key) {
  * @param       endpointConfig   endpoint urls with action(ex : signUp, login , ...)
 */
 char* initialize(struct keyValue_struct** endpointConfig){
-
-
         FILE *fp;
         char initInfo[2000];
-        //open configuration file
         fp = fopen("./endpointConfig.txt", "r");
         if (fp != NULL)
         {
@@ -110,10 +105,8 @@ char* initialize(struct keyValue_struct** endpointConfig){
             if (newLen == 0) {
                 printf("{error:\"true\",message:\"Internal server error-cannot read configuration file\"}\n");
             } else {
-                //Just to be safe
                 initInfo[newLen-1] = '\0';
             }
-
             fclose(fp);
         }
         else
@@ -122,7 +115,6 @@ char* initialize(struct keyValue_struct** endpointConfig){
             return NULL;
         }
         char* res=str_replace(initInfo,"\"","");
-        //read all properties from configuration file and insert into hashmap as key-value pair
         add_toList(&endpointConfiguration,res,',','=');
         if(endpointConfiguration==NULL)
         {
@@ -133,15 +125,10 @@ char* initialize(struct keyValue_struct** endpointConfig){
 
 
 void* handler(void* args){
-    //start acquiring lock
     pthread_mutex_lock(&lock);
-    //cast void pointer into char pointer
     char* requestBody=(char*)args;
-    //a pointer to the hashmap
     struct keyValue_struct *reqData = NULL;
-    //split request into key-value pair and save it in hashmap
     add_toList(&reqData,requestBody,'&','=');
-    //get action
     struct keyValue_struct *action=getValue("action",&reqData);
     char* actionMethod=action->value;
     if(strcmp(actionMethod,"addUser")==0)
@@ -181,7 +168,6 @@ void* handler(void* args){
     {
          publishAPI(requestBody,getUrl("publishAPI"),4000);
     }
-
     pthread_mutex_unlock(&lock);
     return NULL;
 }

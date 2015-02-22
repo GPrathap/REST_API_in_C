@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ *  WSO2 Inc. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied. See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
 #include <sqlite3.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,7 +22,7 @@
 #include "../../resources/externalLibs/headerfile/uthash.h"
 
 /**
- * when headder callback  function is called this is one is used to save http cookie value
+ * when header callback  function is called this is one is used to save http cookie value
  * @param       cookie       session cookie value
  * @param       size         string length of cookie value
 */
@@ -42,7 +59,7 @@ struct response_data{
 
 
 /**
- * is used to connected to databse
+ * is used to connected to database
  * @param		db  pointer to database
  */
 int connectToDatabase(sqlite3 **db);
@@ -64,7 +81,7 @@ int executeSQLStatement(sqlite3 **db,const char* sql,void *data, char **errmsg,c
 */
 char *updateLoginAPIUser(char* cookie,char* username);
 
-/**printout  all users in the databse*/
+/**printout  all users in the database*/
 char *getAllUsers();
 
 /**create user table
@@ -131,68 +148,17 @@ int callbackCookie(void *siteCookie, int argc, char **argv, char **azColName);
 /**this callback function is used to get response body from a  http response in curl
 * @param  ptr            pointer to a structure which will send data when this callback function is called
 * @param  size           number of arguments to be returned
-* @param  nmemb          number of argument timens string length of response
+* @param  nmemb          number of argument n times string length of response
 * @param  data          values to be returned by http curl response
 */
 size_t body_callback(void *ptr, size_t size, size_t nmemb, struct url_data *data);
 
-/**this callback function is used to get response hedder from a  http response in curl
-* @param  buffer       rresponse message when this callback function is called
+/**this callback function is used to get response header from a  http response in curl
+* @param  buffer       response message when this callback function is called
 * @param  size         number of arguments to be returned
-* @param  nitems       number of argument timens string length of response
+* @param  nitems       number of argument times string length of response
 * @param  cookiec      cookie value is to saved from http curl response
 */
 size_t header_callback(char *buffer,size_t size,size_t nitems,struct site_cookie *cookiec);
 
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
-#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
+

@@ -106,318 +106,291 @@ $(document).ready(function(){initNavTree('dbrequest_8c_source.html','');});
 <div class="title">dbrequest.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="dbrequest_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;sqlite3.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../resources/externalLibs/headerfile/uthash.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dbrequest_8h.html">./headerfile/dbrequest.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="baseStruct_8h.html">./headerfile/baseStruct.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/* Execute SQL statement */</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a9a1120fe8f6fb03e9964d2c76fdff670">   11</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(sqlite3 **db,<span class="keyword">const</span> <span class="keywordtype">char</span>* sql,<span class="keywordtype">void</span> *data, <span class="keywordtype">char</span> **errmsg,<span class="keywordtype">char</span> *successCon,<span class="keywordtype">int</span> (*callback)(<span class="keywordtype">void</span> *, <span class="keywordtype">int</span>,  <span class="keywordtype">char</span> **, <span class="keywordtype">char</span> **))</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;       <span class="keywordtype">int</span> rc;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;       rc = sqlite3_exec(*db, sql,callback, data,errmsg);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;       <span class="keywordflow">if</span>( rc != SQLITE_OK ){</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;             printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:\&quot;SQL error: %s\&quot;}\n&quot;</span>,*errmsg);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;             <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;       }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;       }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;       <span class="comment">//sqlite3_close(db);</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a417af26e6acadf52a4243b87c6287126">   29</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a>(<span class="keywordtype">char</span>* userType)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{           <span class="comment">/* Create SQL statement */</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;         <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;         <span class="keywordflow">if</span>(strcmp(userType,<span class="stringliteral">&quot;APIUSER&quot;</span>)==0) {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                        sql = <span class="stringliteral">&quot;CREATE TABLE APIUSER(&quot;</span>  \</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                              <span class="stringliteral">&quot;USERNAME TEXT PRIMARY KEY NOT NULL,&quot;</span> \</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                              <span class="stringliteral">&quot;PASSWORD  TEXT    NOT NULL, COOKIE TEXT);&quot;</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                        <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;         }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        sql = <span class="stringliteral">&quot;CREATE TABLE USER(&quot;</span>  \</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                  <span class="stringliteral">&quot;USERNAME TEXT PRIMARY KEY     NOT NULL,&quot;</span> \</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                  <span class="stringliteral">&quot;PASSWORD  TEXT    NOT NULL,&quot;</span> \</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                  <span class="stringliteral">&quot;COOKIE  TEXT,&quot;</span> \</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                  <span class="stringliteral">&quot;ACCESSTOKEN   TEXT,&quot;</span> \</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                  <span class="stringliteral">&quot;CONSUMERKEY   TEXT,&quot;</span> \</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                  <span class="stringliteral">&quot;CONSUMERSECRET  TEXT );&quot;</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#af0621661477ab5395cdb89c176b3ba96">   47</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="dbrequest_8c.html#a9f6a1cc5ab081f9850241931a3c639b9">removeTable</a>(<span class="keywordtype">char</span>* TableName){</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">char</span>* sql=malloc(200);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">char</span>* tmp=<span class="stringliteral">&quot;DROP TABLE &quot;</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    strcpy(sql,tmp);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    strcat(sql,TableName);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    strcat(sql,<span class="stringliteral">&quot;;&quot;</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">   55</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">createAPIUser</a>(<span class="keywordtype">char</span>* username,<span class="keywordtype">char</span>* password)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{           <span class="comment">/* Create SQL statement */</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                 <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                 sql=malloc(200);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                 sprintf(sql, <span class="stringliteral">&quot;INSERT INTO APIUSER (USERNAME,PASSWORD)VALUES (&#39; %s &#39;,&#39;%s&#39;);&quot;</span>,username,password);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                 <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a6e8be0b881fc114a7e79987dd95d6e1b">   64</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="dbrequest_8c.html#a6e8be0b881fc114a7e79987dd95d6e1b">createUser</a>(<span class="keywordtype">char</span>* username,<span class="keywordtype">char</span>* password,<span class="keywordtype">char</span>* cookie)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      sql=malloc(200);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      sprintf(sql, <span class="stringliteral">&quot;INSERT INTO USER (USERNAME,PASSWORD,COOKIE)VALUES (&#39;%s&#39;,&#39;%s&#39;,&#39;%s&#39;);&quot;</span>,username,password,cookie);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a0158a88b952c144731180ea932697e33">   72</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#a0158a88b952c144731180ea932697e33">getAllUsers</a>()</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        sql = <span class="stringliteral">&quot;SELECT * from USER&quot;</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#ad52bbf3110f9426d91e4ed47cb05e258">   81</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#ad52bbf3110f9426d91e4ed47cb05e258">updateCookie</a>(<span class="keywordtype">char</span>* cookie,<span class="keywordtype">char</span>* username)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;             <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;             sql=malloc(400);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;             sprintf(sql, <span class="stringliteral">&quot;UPDATE USER set COOKIE = &#39;%s&#39;where USERNAME=&#39;%s&#39;;&quot;</span>,cookie,username);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;             <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a0aae734ed02770eebe6181ded527765a">   90</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#a0aae734ed02770eebe6181ded527765a">updateLoginAPIUser</a>(<span class="keywordtype">char</span>* cookie,<span class="keywordtype">char</span>* username)</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;{</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;             <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;             sql=malloc(400);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;             sprintf(sql, <span class="stringliteral">&quot;UPDATE APIUSER set COOKIE = &#39;%s&#39;  where USERNAME=&#39;%s&#39;;&quot;</span>,cookie,username);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;             <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<a href="dbrequest_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  WSO2 Inc. licenses this file to you under the Apache License,</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *  Version 2.0 (the &quot;License&quot;); you may not use this file except</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *  in compliance with the License.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *  You may obtain a copy of the License at</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *  http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *  Unless required by applicable law or agreed to in writing,</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *  software distributed under the License is distributed on an</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *  &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *  KIND, either express or implied. See the License for the</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *  specific language governing permissions and limitations</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *  under the License.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;sqlite3.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;../resources/externalLibs/headerfile/uthash.h&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dbrequest_8h.html">./headerfile/dbrequest.h</a>&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="baseStruct_8h.html">./headerfile/baseStruct.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/* Execute SQL statement */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a9a1120fe8f6fb03e9964d2c76fdff670">   28</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(sqlite3 **db,<span class="keyword">const</span> <span class="keywordtype">char</span>* sql,<span class="keywordtype">void</span> *data, <span class="keywordtype">char</span> **errmsg,<span class="keywordtype">char</span> *successCon,<span class="keywordtype">int</span> (*callback)(<span class="keywordtype">void</span> *, <span class="keywordtype">int</span>,  <span class="keywordtype">char</span> **, <span class="keywordtype">char</span> **))</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;       <span class="keywordtype">int</span> rc;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;       rc = sqlite3_exec(*db, sql,callback, data,errmsg);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;       <span class="keywordflow">if</span>( rc != SQLITE_OK ){</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;             printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:\&quot;SQL error: %s\&quot;}\n&quot;</span>,*errmsg);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;             <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;       }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;       }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a417af26e6acadf52a4243b87c6287126">   40</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a>(<span class="keywordtype">char</span>* userType)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;         <span class="keywordtype">char</span>* sql;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;         <span class="keywordflow">if</span>(strcmp(userType,<span class="stringliteral">&quot;APIUSER&quot;</span>)==0) {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        sql = <span class="stringliteral">&quot;CREATE TABLE APIUSER(&quot;</span>  \</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                              <span class="stringliteral">&quot;USERNAME TEXT PRIMARY KEY NOT NULL,&quot;</span> \</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                              <span class="stringliteral">&quot;PASSWORD  TEXT    NOT NULL, COOKIE TEXT);&quot;</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;         }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        sql = <span class="stringliteral">&quot;CREATE TABLE USER(&quot;</span>  \</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                  <span class="stringliteral">&quot;USERNAME TEXT PRIMARY KEY     NOT NULL,&quot;</span> \</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                  <span class="stringliteral">&quot;PASSWORD  TEXT    NOT NULL,&quot;</span> \</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                  <span class="stringliteral">&quot;COOKIE  TEXT,&quot;</span> \</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                  <span class="stringliteral">&quot;ACCESSTOKEN   TEXT,&quot;</span> \</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                  <span class="stringliteral">&quot;CONSUMERKEY   TEXT,&quot;</span> \</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                  <span class="stringliteral">&quot;CONSUMERSECRET  TEXT );&quot;</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#af0621661477ab5395cdb89c176b3ba96">   59</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="dbrequest_8c.html#a9f6a1cc5ab081f9850241931a3c639b9">removeTable</a>(<span class="keywordtype">char</span>* TableName){</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">char</span>* sql=malloc(200);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">char</span>* tmp=<span class="stringliteral">&quot;DROP TABLE &quot;</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    strcpy(sql,tmp);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    strcat(sql,TableName);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    strcat(sql,<span class="stringliteral">&quot;;&quot;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">   68</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">createAPIUser</a>(<span class="keywordtype">char</span>* username,<span class="keywordtype">char</span>* password)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                 <span class="keywordtype">char</span>* sql;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                 sql=malloc(200);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                 sprintf(sql, <span class="stringliteral">&quot;INSERT INTO APIUSER (USERNAME,PASSWORD)VALUES (&#39; %s &#39;,&#39;%s&#39;);&quot;</span>,username,password);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                 <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a6e8be0b881fc114a7e79987dd95d6e1b">   76</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="dbrequest_8c.html#a6e8be0b881fc114a7e79987dd95d6e1b">createUser</a>(<span class="keywordtype">char</span>* username,<span class="keywordtype">char</span>* password,<span class="keywordtype">char</span>* cookie)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keywordtype">char</span>* sql;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      sql=malloc(200);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      sprintf(sql, <span class="stringliteral">&quot;INSERT INTO USER (USERNAME,PASSWORD,COOKIE)VALUES (&#39;%s&#39;,&#39;%s&#39;,&#39;%s&#39;);&quot;</span>,username,password,cookie);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a0158a88b952c144731180ea932697e33">   84</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#a0158a88b952c144731180ea932697e33">getAllUsers</a>()</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">char</span>* sql;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        sql = <span class="stringliteral">&quot;SELECT * from USER&quot;</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#ad52bbf3110f9426d91e4ed47cb05e258">   91</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#ad52bbf3110f9426d91e4ed47cb05e258">updateCookie</a>(<span class="keywordtype">char</span>* cookie,<span class="keywordtype">char</span>* username)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;             <span class="keywordtype">char</span>* sql;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;             sql=malloc(400);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;             sprintf(sql, <span class="stringliteral">&quot;UPDATE USER set COOKIE = &#39;%s&#39;where USERNAME=&#39;%s&#39;;&quot;</span>,cookie,username);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;             <span class="keywordflow">return</span> sql;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#adda15b3389b8aa5883c1cf9d3d2bf7c8">   99</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#adda15b3389b8aa5883c1cf9d3d2bf7c8">updateSubscriptionDetails</a>(<span class="keywordtype">char</span>* consumerKey,<span class="keywordtype">char</span>* accessToken,<span class="keywordtype">char</span>* consumerSecret, <span class="keywordtype">char</span>* username )</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a0aae734ed02770eebe6181ded527765a">   99</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#a0aae734ed02770eebe6181ded527765a">updateLoginAPIUser</a>(<span class="keywordtype">char</span>* cookie,<span class="keywordtype">char</span>* username)</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;{</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;             <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;             sql=malloc(400);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;             sprintf(sql, <span class="stringliteral">&quot;UPDATE USER set CONSUMERKEY = &#39;%s&#39;,ACCESSTOKEN =&#39;%s&#39; ,CONSUMERSECRET= &#39;%s&#39;  where USERNAME=&#39;%s&#39;;&quot;</span>,consumerKey,accessToken,consumerSecret,username);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;             <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;             sql=malloc(400);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;             sprintf(sql, <span class="stringliteral">&quot;UPDATE APIUSER set COOKIE = &#39;%s&#39;  where USERNAME=&#39;%s&#39;;&quot;</span>,cookie,username);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;             <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#ab329c169c7e6aa310d93e2a151a830cb">  109</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="dbrequest_8c.html#ab329c169c7e6aa310d93e2a151a830cb">getCookieValue</a>(<span class="keywordtype">char</span>* username,<span class="keywordtype">char</span>* userType)</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;{</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        sql=malloc(256);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        sprintf(sql, <span class="stringliteral">&quot;SELECT COOKIE from %s where USERNAME=&#39;%s&#39;;&quot;</span>,userType,username);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="dbrequest_8c.html#a49c10740a5fe1f3a8fd0f3719fc068f5">  117</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#a49c10740a5fe1f3a8fd0f3719fc068f5">createSQLStatementDelete</a>()</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordtype">char</span>* sql;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        sql = <span class="stringliteral">&quot;DELETE from USER where USERNAME=&#39;Geesara&#39;; &quot;</span> \</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                <span class="stringliteral">&quot;SELECT * from USER&quot;</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">return</span> sql;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#afaddd70c00b847c955ae6838ec5d5050">  127</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a>(sqlite3 **db)</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;       <span class="comment">/* Open database */</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;       <span class="keywordtype">int</span>  rc;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;       rc = sqlite3_open(<a class="code" href="dbrequest_8h.html#a0670e0e3546fcd815d007fe1aeff321e">DB_PATH</a>, db);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;       <span class="keywordflow">if</span>( rc ){</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;          printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:Can&#39;t open database: %s\&quot;}\n&quot;</span>,sqlite3_errmsg(*db));</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;          <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;       }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#adda15b3389b8aa5883c1cf9d3d2bf7c8">  107</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#adda15b3389b8aa5883c1cf9d3d2bf7c8">updateSubscriptionDetails</a>(<span class="keywordtype">char</span>* consumerKey,<span class="keywordtype">char</span>* accessToken,<span class="keywordtype">char</span>* consumerSecret, <span class="keywordtype">char</span>* username )</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;             <span class="keywordtype">char</span>* sql;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;             sql=malloc(400);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;             sprintf(sql, <span class="stringliteral">&quot;UPDATE USER set CONSUMERKEY = &#39;%s&#39;,ACCESSTOKEN =&#39;%s&#39; ,CONSUMERSECRET= &#39;%s&#39;  where USERNAME=&#39;%s&#39;;&quot;</span>,consumerKey,accessToken,consumerSecret,username);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;             <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#ab329c169c7e6aa310d93e2a151a830cb">  115</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="dbrequest_8c.html#ab329c169c7e6aa310d93e2a151a830cb">getCookieValue</a>(<span class="keywordtype">char</span>* username,<span class="keywordtype">char</span>* userType)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;{</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordtype">char</span>* sql;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        sql=malloc(256);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        sprintf(sql, <span class="stringliteral">&quot;SELECT COOKIE from %s where USERNAME=&#39;%s&#39;;&quot;</span>,userType,username);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="dbrequest_8c.html#a49c10740a5fe1f3a8fd0f3719fc068f5">  123</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="dbrequest_8c.html#a49c10740a5fe1f3a8fd0f3719fc068f5">createSQLStatementDelete</a>()</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordtype">char</span>* sql;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        sql = <span class="stringliteral">&quot;DELETE from USER where USERNAME=&#39;Geesara&#39;; &quot;</span> \</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                <span class="stringliteral">&quot;SELECT * from USER&quot;</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">return</span> sql;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#afaddd70c00b847c955ae6838ec5d5050">  131</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a>(sqlite3 **db)</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;       <span class="keywordtype">int</span>  rc;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;       rc = sqlite3_open(DB_PATH, db);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;       <span class="keywordflow">if</span>( rc ){</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;          printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:Can&#39;t open database: %s\&quot;}\n&quot;</span>,sqlite3_errmsg(*db));</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;          <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;       }<span class="keywordflow">else</span>{</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;          <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;       }</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
 <div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a2dc4cda08a3b247f759e9b58aa183d5a">  143</a></span>&#160; <span class="keywordtype">int</span> <a class="code" href="dbrequest_8c.html#a2dc4cda08a3b247f759e9b58aa183d5a">callbackCookie</a>(<span class="keywordtype">void</span> *siteCookie, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keywordtype">char</span> **azColName)</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;{</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;      <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;      <span class="keyword">struct </span><a class="code" href="structsite__cookie.html">site_cookie</a> *siteCookieVal;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      siteCookieVal=(<span class="keyword">struct </span><a class="code" href="structsite__cookie.html">site_cookie</a>*)siteCookie;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      <span class="keywordflow">for</span>(i=0; i&lt;argc; i++){</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;         siteCookieVal-&gt;<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=100;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;         siteCookieVal-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;         strcpy(siteCookieVal-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>,argv[i]);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;      }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;      printf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;      <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">/*print all uses in the database*/</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">  161</a></span>&#160; <span class="keywordtype">int</span> <a class="code" href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a>(<span class="keywordtype">void</span> *data, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keywordtype">char</span> **azColName)</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;{</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;      <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      fprintf(stderr, <span class="stringliteral">&quot;%s: &quot;</span>, (<span class="keyword">const</span> <span class="keywordtype">char</span>*)data);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      <span class="keywordflow">for</span>(i=0; i&lt;argc; i++){</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;         printf(<span class="stringliteral">&quot;%s = %s\n&quot;</span>, azColName[i], argv[i] ? argv[i] : <span class="stringliteral">&quot;NULL&quot;</span>);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      printf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">this callback function is used to get cookie value from a  http response in curl</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">this functions is called aysconaslly and buffer will return http headder details one at time</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">so have tract when is the cookie value was return and if it is so save cookie value in given</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">struct</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#ae96066b1338776fba2f9281bbfe96560">  177</a></span>&#160; <span class="keywordtype">size_t</span> <a class="code" href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a>(<span class="keywordtype">char</span> *buffer,<span class="keywordtype">size_t</span> <a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>,<span class="keywordtype">size_t</span> nitems,<span class="keyword">struct</span> <a class="code" href="structsite__cookie.html">site_cookie</a> *cookiec)</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;{</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordflow">if</span>(strlen(buffer)&gt;12)</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    {</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;             <span class="keywordtype">char</span> dest[11];</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;             strncpy(dest, buffer,10);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;             <span class="keywordflow">if</span>(strcmp(dest,<span class="stringliteral">&quot;Set-Cookie&quot;</span>)==0)</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;             {</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                       <span class="keywordtype">char</span>** cookieKeyValue=<a class="code" href="baseStruct_8c.html#ab39a39cfc3dafcdd137ec53ca81936d7">str_split</a>(buffer,<span class="charliteral">&#39;:&#39;</span>);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                       cookiec-&gt;<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=100;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                       cookiec-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                       <span class="keywordtype">char</span>* temp1=<a class="code" href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a>(cookieKeyValue[1],<span class="stringliteral">&quot;\r&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                       <span class="keywordtype">char</span>* temp2=<a class="code" href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a>(temp1,<span class="stringliteral">&quot;\n&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                       strcpy(cookiec-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>,temp2);</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;      <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;      <span class="keyword">struct </span><a class="code" href="structsite__cookie.html">site_cookie</a> *siteCookieVal;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;      siteCookieVal=(<span class="keyword">struct </span><a class="code" href="structsite__cookie.html">site_cookie</a>*)siteCookie;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      <span class="keywordflow">for</span>(i=0; i&lt;argc; i++){</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;         siteCookieVal-&gt;<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=100;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;         siteCookieVal-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;         strcpy(siteCookieVal-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>,argv[i]);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;      }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      printf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;}</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">/*print all uses in the database*/</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">  158</a></span>&#160; <span class="keywordtype">int</span> <a class="code" href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a>(<span class="keywordtype">void</span> *data, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keywordtype">char</span> **azColName)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;{</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;      <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;      fprintf(stderr, <span class="stringliteral">&quot;%s: &quot;</span>, (<span class="keyword">const</span> <span class="keywordtype">char</span>*)data);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;      <span class="keywordflow">for</span>(i=0; i&lt;argc; i++){</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;         printf(<span class="stringliteral">&quot;%s = %s\n&quot;</span>, azColName[i], argv[i] ? argv[i] : <span class="stringliteral">&quot;NULL&quot;</span>);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      printf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;}</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">this callback function is used to get cookie value from a  http response in curl</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">this functions is called asynchronously and buffer will return http header details one at time</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">so have tract when is the cookie value was return and if it is so save cookie value in given</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">struct</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#ae96066b1338776fba2f9281bbfe96560">  175</a></span>&#160; <span class="keywordtype">size_t</span> <a class="code" href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a>(<span class="keywordtype">char</span> *buffer,<span class="keywordtype">size_t</span> <a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>,<span class="keywordtype">size_t</span> nitems,<span class="keyword">struct</span> <a class="code" href="structsite__cookie.html">site_cookie</a> *cookiec)</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;{</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">if</span>(strlen(buffer)&gt;12)</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;             <span class="keywordtype">char</span> dest[11];</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;             strncpy(dest, buffer,10);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;             <span class="keywordflow">if</span>(strcmp(dest,<span class="stringliteral">&quot;Set-Cookie&quot;</span>)==0)</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;             {</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                       <span class="keywordtype">char</span>** cookieKeyValue=<a class="code" href="baseStruct_8c.html#ab39a39cfc3dafcdd137ec53ca81936d7">str_split</a>(buffer,<span class="charliteral">&#39;:&#39;</span>);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                       cookiec-&gt;<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=100;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                       cookiec-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                       <span class="keywordtype">char</span>* temp1=<a class="code" href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a>(cookieKeyValue[1],<span class="stringliteral">&quot;\r&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                       <span class="keywordtype">char</span>* temp2=<a class="code" href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a>(temp1,<span class="stringliteral">&quot;\n&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                       strcpy(cookiec-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>,temp2);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;             }</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordflow">return</span> nitems;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;}</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;             }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    }</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordflow">return</span> nitems;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;}</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">/*this callback function is used to get response body data  from a  http response in curl</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">    this function is called aysconasllyand and http response data comming from void* ptr</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">    so have to grab those data save it in url_data struct</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a52c592e86aff35d6fe6253ab96415785">  203</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="dbrequest_8c.html#a52c592e86aff35d6fe6253ab96415785">body_callback</a>(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">size_t</span> <a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>, <span class="keywordtype">size_t</span> nmemb, <span class="keyword">struct</span> <a class="code" href="structurl__data.html">url_data</a> *data)</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;{</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordtype">size_t</span> index = data-&gt;<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a>;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">size_t</span> n = (size * nmemb);</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">char</span>* tmp;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    data-&gt;<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a>+=(size * nmemb);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor">    #ifdef DEBUG</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor"></span>    <span class="comment">//fprintf(stderr, &quot;data at %p size=%ld nmemb=%ld\n&quot;, ptr, size, nmemb);</span></div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor"></span>    tmp = realloc(data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>, data-&gt;<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a> + 1); <span class="comment">/* +1 for &#39;\0&#39; */</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordflow">if</span>(tmp) {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a> = tmp;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    }</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keywordflow">if</span>(data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>) {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            free(data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        }</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        fprintf(stdout, <span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:\&quot;Failed to allocate memory\&quot;}\n&quot;</span>);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    memcpy((data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a> + index), ptr, n);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>[data-&gt;<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a>] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">return</span> size * nmemb;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;}</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
-<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a7af1fcc273c8343fe7d59f20ca62c33c">  236</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="dbrequest_8c.html#a7af1fcc273c8343fe7d59f20ca62c33c">getPreviousCookieValue</a>(<span class="keywordtype">char</span>* username,<span class="keywordtype">char</span>* userType)</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;{</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;      sqlite3 *db=NULL;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;      <span class="keywordtype">char</span> *errmsg = 0;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">char</span> *sql;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;      <span class="comment">// const char* data = &quot;Callback function called\n&quot;;</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      <span class="keyword">struct </span><a class="code" href="structsite__cookie.html">site_cookie</a> *siteCookie;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;      siteCookie=malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structsite__cookie.html">site_cookie</a>));</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      siteCookie-&gt;<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=0;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;      siteCookie-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;      <span class="keywordflow">if</span>(NULL == siteCookie-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>) {</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;           printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:\&quot;Failed to allocate memory.\&quot;}&quot;</span>);</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;           <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      }</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      <span class="comment">//struct keyValue_struct *reqData = NULL;</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      <span class="keywordtype">int</span> status=<a class="code" href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a>(&amp;db);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;       <span class="keywordflow">if</span>(status==0)</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;       {</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;           printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:\&quot;Cant open the database \&quot;}&quot;</span>);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;           <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;       }</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;       sql=<a class="code" href="dbrequest_8c.html#ab329c169c7e6aa310d93e2a151a830cb">getCookieValue</a>(username,userType);</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;       status=<a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(&amp;db,sql,(<span class="keywordtype">void</span>*)siteCookie,&amp;errmsg,NULL,<a class="code" href="dbrequest_8c.html#a2dc4cda08a3b247f759e9b58aa183d5a">callbackCookie</a>);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;       <span class="keywordflow">if</span>(status==0)</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;       {</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;       }</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;       sqlite3_close(db);</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;       <span class="keywordflow">return</span> siteCookie-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;}</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="ttc" id="dbrequest_8c_html_a0158a88b952c144731180ea932697e33"><div class="ttname"><a href="dbrequest_8c.html#a0158a88b952c144731180ea932697e33">getAllUsers</a></div><div class="ttdeci">char * getAllUsers()</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00072">dbrequest.c:72</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_ab329c169c7e6aa310d93e2a151a830cb"><div class="ttname"><a href="dbrequest_8c.html#ab329c169c7e6aa310d93e2a151a830cb">getCookieValue</a></div><div class="ttdeci">char * getCookieValue(char *username, char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00109">dbrequest.c:109</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_ab43f5cb0ccfcc7dfccf45753c740e3fa"><div class="ttname"><a href="dbrequest_8c.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">createAPIUser</a></div><div class="ttdeci">char * createAPIUser(char *username, char *password)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00055">dbrequest.c:55</a></div></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">/*this callback function is used to get response body data  from a  http response in curl</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">    this function is called asynchronously  and http response data coming from void* ptr</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">    so have to grab those data save it in url_data struct</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a52c592e86aff35d6fe6253ab96415785">  198</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="dbrequest_8c.html#a52c592e86aff35d6fe6253ab96415785">body_callback</a>(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">size_t</span> <a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>, <span class="keywordtype">size_t</span> nmemb, <span class="keyword">struct</span> <a class="code" href="structurl__data.html">url_data</a> *data)</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;{</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordtype">size_t</span> index = data-&gt;<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a>;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keywordtype">size_t</span> n = (size * nmemb);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordtype">char</span>* tmp;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    data-&gt;<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a>+=(size * nmemb);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">    #ifdef DEBUG</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor"></span>    tmp = realloc(data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>, data-&gt;<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a> + 1); <span class="comment">/* +1 for &#39;\0&#39; */</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">if</span>(tmp) {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a> = tmp;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keywordflow">if</span>(data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>) {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            free(data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        }</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        fprintf(stdout, <span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:\&quot;Failed to allocate memory\&quot;}\n&quot;</span>);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    }</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    memcpy((data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a> + index), ptr, n);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    data-&gt;<a class="code" href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">data</a>[data-&gt;<a class="code" href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">size</a>] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">return</span> size * nmemb;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="dbrequest_8h.html#a7af1fcc273c8343fe7d59f20ca62c33c">  223</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="dbrequest_8c.html#a7af1fcc273c8343fe7d59f20ca62c33c">getPreviousCookieValue</a>(<span class="keywordtype">char</span>* username,<span class="keywordtype">char</span>* userType)</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;{</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;      sqlite3 *db=NULL;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;      <span class="keywordtype">char</span> *errmsg = 0;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">char</span> *sql;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;      <span class="keyword">struct </span><a class="code" href="structsite__cookie.html">site_cookie</a> *siteCookie;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;      siteCookie=malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structsite__cookie.html">site_cookie</a>));</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      siteCookie-&gt;<a class="code" href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">size</a>=0;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;      siteCookie-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>=malloc(256);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;      <span class="keywordflow">if</span>(NULL == siteCookie-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>) {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;           printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:\&quot;Failed to allocate memory.\&quot;}&quot;</span>);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;           <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;      }</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;      <span class="keywordtype">int</span> status=<a class="code" href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a>(&amp;db);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;       <span class="keywordflow">if</span>(status==0)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;       {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;           printf(<span class="stringliteral">&quot;{error:\&quot;true\&quot;,message:\&quot;Cant open the database \&quot;}&quot;</span>);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;           <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;       }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;       sql=<a class="code" href="dbrequest_8c.html#ab329c169c7e6aa310d93e2a151a830cb">getCookieValue</a>(username,userType);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;       status=<a class="code" href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a>(&amp;db,sql,(<span class="keywordtype">void</span>*)siteCookie,&amp;errmsg,NULL,<a class="code" href="dbrequest_8c.html#a2dc4cda08a3b247f759e9b58aa183d5a">callbackCookie</a>);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;       <span class="keywordflow">if</span>(status==0)</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;       {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;       }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;       sqlite3_close(db);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;       <span class="keywordflow">return</span> siteCookie-&gt;<a class="code" href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">cookie</a>;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;}</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="ttc" id="dbrequest_8c_html_a0158a88b952c144731180ea932697e33"><div class="ttname"><a href="dbrequest_8c.html#a0158a88b952c144731180ea932697e33">getAllUsers</a></div><div class="ttdeci">char * getAllUsers()</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00084">dbrequest.c:84</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_ab329c169c7e6aa310d93e2a151a830cb"><div class="ttname"><a href="dbrequest_8c.html#ab329c169c7e6aa310d93e2a151a830cb">getCookieValue</a></div><div class="ttdeci">char * getCookieValue(char *username, char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00115">dbrequest.c:115</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_ab43f5cb0ccfcc7dfccf45753c740e3fa"><div class="ttname"><a href="dbrequest_8c.html#ab43f5cb0ccfcc7dfccf45753c740e3fa">createAPIUser</a></div><div class="ttdeci">char * createAPIUser(char *username, char *password)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00068">dbrequest.c:68</a></div></div>
 <div class="ttc" id="dbrequest_8c_html_a2dc4cda08a3b247f759e9b58aa183d5a"><div class="ttname"><a href="dbrequest_8c.html#a2dc4cda08a3b247f759e9b58aa183d5a">callbackCookie</a></div><div class="ttdeci">int callbackCookie(void *siteCookie, int argc, char **argv, char **azColName)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00143">dbrequest.c:143</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_adda15b3389b8aa5883c1cf9d3d2bf7c8"><div class="ttname"><a href="dbrequest_8c.html#adda15b3389b8aa5883c1cf9d3d2bf7c8">updateSubscriptionDetails</a></div><div class="ttdeci">char * updateSubscriptionDetails(char *consumerKey, char *accessToken, char *consumerSecret, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00099">dbrequest.c:99</a></div></div>
-<div class="ttc" id="structurl__data_html_ad3a5fe9c035fd8d6821363df1ce77725"><div class="ttname"><a href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">url_data::data</a></div><div class="ttdeci">char * data</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00027">dbrequest.h:27</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a417af26e6acadf52a4243b87c6287126"><div class="ttname"><a href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a></div><div class="ttdeci">char * createUserTable(char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00029">dbrequest.c:29</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a0aae734ed02770eebe6181ded527765a"><div class="ttname"><a href="dbrequest_8c.html#a0aae734ed02770eebe6181ded527765a">updateLoginAPIUser</a></div><div class="ttdeci">char * updateLoginAPIUser(char *cookie, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00090">dbrequest.c:90</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a49c10740a5fe1f3a8fd0f3719fc068f5"><div class="ttname"><a href="dbrequest_8c.html#a49c10740a5fe1f3a8fd0f3719fc068f5">createSQLStatementDelete</a></div><div class="ttdeci">char * createSQLStatementDelete()</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00117">dbrequest.c:117</a></div></div>
-<div class="ttc" id="dbrequest_8h_html_a0670e0e3546fcd815d007fe1aeff321e"><div class="ttname"><a href="dbrequest_8h.html#a0670e0e3546fcd815d007fe1aeff321e">DB_PATH</a></div><div class="ttdeci">#define DB_PATH</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00198">dbrequest.h:198</a></div></div>
-<div class="ttc" id="baseStruct_8c_html_ab39a39cfc3dafcdd137ec53ca81936d7"><div class="ttname"><a href="baseStruct_8c.html#ab39a39cfc3dafcdd137ec53ca81936d7">str_split</a></div><div class="ttdeci">char ** str_split(char *a_str, const char a_delim)</div><div class="ttdef"><b>Definition:</b> <a href="baseStruct_8c_source.html#l00012">baseStruct.c:12</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_adda15b3389b8aa5883c1cf9d3d2bf7c8"><div class="ttname"><a href="dbrequest_8c.html#adda15b3389b8aa5883c1cf9d3d2bf7c8">updateSubscriptionDetails</a></div><div class="ttdeci">char * updateSubscriptionDetails(char *consumerKey, char *accessToken, char *consumerSecret, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00107">dbrequest.c:107</a></div></div>
+<div class="ttc" id="structurl__data_html_ad3a5fe9c035fd8d6821363df1ce77725"><div class="ttname"><a href="structurl__data.html#ad3a5fe9c035fd8d6821363df1ce77725">url_data::data</a></div><div class="ttdeci">char * data</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00044">dbrequest.h:44</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a417af26e6acadf52a4243b87c6287126"><div class="ttname"><a href="dbrequest_8c.html#a417af26e6acadf52a4243b87c6287126">createUserTable</a></div><div class="ttdeci">char * createUserTable(char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00040">dbrequest.c:40</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a0aae734ed02770eebe6181ded527765a"><div class="ttname"><a href="dbrequest_8c.html#a0aae734ed02770eebe6181ded527765a">updateLoginAPIUser</a></div><div class="ttdeci">char * updateLoginAPIUser(char *cookie, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00099">dbrequest.c:99</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a49c10740a5fe1f3a8fd0f3719fc068f5"><div class="ttname"><a href="dbrequest_8c.html#a49c10740a5fe1f3a8fd0f3719fc068f5">createSQLStatementDelete</a></div><div class="ttdeci">char * createSQLStatementDelete()</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00123">dbrequest.c:123</a></div></div>
+<div class="ttc" id="baseStruct_8c_html_ab39a39cfc3dafcdd137ec53ca81936d7"><div class="ttname"><a href="baseStruct_8c.html#ab39a39cfc3dafcdd137ec53ca81936d7">str_split</a></div><div class="ttdeci">char ** str_split(char *a_str, const char a_delim)</div><div class="ttdef"><b>Definition:</b> <a href="baseStruct_8c_source.html#l00027">baseStruct.c:27</a></div></div>
 <div class="ttc" id="baseStruct_8h_html"><div class="ttname"><a href="baseStruct_8h.html">baseStruct.h</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a6e8be0b881fc114a7e79987dd95d6e1b"><div class="ttname"><a href="dbrequest_8c.html#a6e8be0b881fc114a7e79987dd95d6e1b">createUser</a></div><div class="ttdeci">char * createUser(char *username, char *password, char *cookie)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00064">dbrequest.c:64</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_afaddd70c00b847c955ae6838ec5d5050"><div class="ttname"><a href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a></div><div class="ttdeci">int connectToDatabase(sqlite3 **db)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00127">dbrequest.c:127</a></div></div>
-<div class="ttc" id="structsite__cookie_html_a5b008e1c9b9df5a724dd286d950eb30a"><div class="ttname"><a href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">site_cookie::cookie</a></div><div class="ttdeci">char * cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00015">dbrequest.h:15</a></div></div>
-<div class="ttc" id="structsite__cookie_html"><div class="ttname"><a href="structsite__cookie.html">site_cookie</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00012">dbrequest.h:12</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a9f6a1cc5ab081f9850241931a3c639b9"><div class="ttname"><a href="dbrequest_8c.html#a9f6a1cc5ab081f9850241931a3c639b9">removeTable</a></div><div class="ttdeci">char * removeTable(char *TableName)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00047">dbrequest.c:47</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a7af1fcc273c8343fe7d59f20ca62c33c"><div class="ttname"><a href="dbrequest_8c.html#a7af1fcc273c8343fe7d59f20ca62c33c">getPreviousCookieValue</a></div><div class="ttdeci">char * getPreviousCookieValue(char *username, char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00236">dbrequest.c:236</a></div></div>
-<div class="ttc" id="structurl__data_html_a580f76d1bdde5b56bb7454e89a0d1ba8"><div class="ttname"><a href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">url_data::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00026">dbrequest.h:26</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a9a1120fe8f6fb03e9964d2c76fdff670"><div class="ttname"><a href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a></div><div class="ttdeci">int executeSQLStatement(sqlite3 **db, const char *sql, void *data, char **errmsg, char *successCon, int(*callback)(void *, int, char **, char **))</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00011">dbrequest.c:11</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_ad52bbf3110f9426d91e4ed47cb05e258"><div class="ttname"><a href="dbrequest_8c.html#ad52bbf3110f9426d91e4ed47cb05e258">updateCookie</a></div><div class="ttdeci">char * updateCookie(char *cookie, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00081">dbrequest.c:81</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a52c592e86aff35d6fe6253ab96415785"><div class="ttname"><a href="dbrequest_8c.html#a52c592e86aff35d6fe6253ab96415785">body_callback</a></div><div class="ttdeci">size_t body_callback(void *ptr, size_t size, size_t nmemb, struct url_data *data)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00203">dbrequest.c:203</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a6e8be0b881fc114a7e79987dd95d6e1b"><div class="ttname"><a href="dbrequest_8c.html#a6e8be0b881fc114a7e79987dd95d6e1b">createUser</a></div><div class="ttdeci">char * createUser(char *username, char *password, char *cookie)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00076">dbrequest.c:76</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_afaddd70c00b847c955ae6838ec5d5050"><div class="ttname"><a href="dbrequest_8c.html#afaddd70c00b847c955ae6838ec5d5050">connectToDatabase</a></div><div class="ttdeci">int connectToDatabase(sqlite3 **db)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00131">dbrequest.c:131</a></div></div>
+<div class="ttc" id="structsite__cookie_html_a5b008e1c9b9df5a724dd286d950eb30a"><div class="ttname"><a href="structsite__cookie.html#a5b008e1c9b9df5a724dd286d950eb30a">site_cookie::cookie</a></div><div class="ttdeci">char * cookie</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00032">dbrequest.h:32</a></div></div>
+<div class="ttc" id="structsite__cookie_html"><div class="ttname"><a href="structsite__cookie.html">site_cookie</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00029">dbrequest.h:29</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a9f6a1cc5ab081f9850241931a3c639b9"><div class="ttname"><a href="dbrequest_8c.html#a9f6a1cc5ab081f9850241931a3c639b9">removeTable</a></div><div class="ttdeci">char * removeTable(char *TableName)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00059">dbrequest.c:59</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a7af1fcc273c8343fe7d59f20ca62c33c"><div class="ttname"><a href="dbrequest_8c.html#a7af1fcc273c8343fe7d59f20ca62c33c">getPreviousCookieValue</a></div><div class="ttdeci">char * getPreviousCookieValue(char *username, char *userType)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00223">dbrequest.c:223</a></div></div>
+<div class="ttc" id="structurl__data_html_a580f76d1bdde5b56bb7454e89a0d1ba8"><div class="ttname"><a href="structurl__data.html#a580f76d1bdde5b56bb7454e89a0d1ba8">url_data::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00043">dbrequest.h:43</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a9a1120fe8f6fb03e9964d2c76fdff670"><div class="ttname"><a href="dbrequest_8c.html#a9a1120fe8f6fb03e9964d2c76fdff670">executeSQLStatement</a></div><div class="ttdeci">int executeSQLStatement(sqlite3 **db, const char *sql, void *data, char **errmsg, char *successCon, int(*callback)(void *, int, char **, char **))</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00028">dbrequest.c:28</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_ad52bbf3110f9426d91e4ed47cb05e258"><div class="ttname"><a href="dbrequest_8c.html#ad52bbf3110f9426d91e4ed47cb05e258">updateCookie</a></div><div class="ttdeci">char * updateCookie(char *cookie, char *username)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00091">dbrequest.c:91</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a52c592e86aff35d6fe6253ab96415785"><div class="ttname"><a href="dbrequest_8c.html#a52c592e86aff35d6fe6253ab96415785">body_callback</a></div><div class="ttdeci">size_t body_callback(void *ptr, size_t size, size_t nmemb, struct url_data *data)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00198">dbrequest.c:198</a></div></div>
 <div class="ttc" id="dbrequest_8h_html"><div class="ttname"><a href="dbrequest_8h.html">dbrequest.h</a></div></div>
-<div class="ttc" id="baseStruct_8c_html_a003e090ef8e500eceadba683e83a98ad"><div class="ttname"><a href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a></div><div class="ttdeci">char * str_replace(const char *str, const char *old, const char *newOne)</div><div class="ttdef"><b>Definition:</b> <a href="baseStruct_8c_source.html#l00136">baseStruct.c:136</a></div></div>
-<div class="ttc" id="structurl__data_html"><div class="ttname"><a href="structurl__data.html">url_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00024">dbrequest.h:24</a></div></div>
-<div class="ttc" id="structsite__cookie_html_a993673972e04f0a8dc5821e4fc6d5aa9"><div class="ttname"><a href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">site_cookie::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00014">dbrequest.h:14</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_ae96066b1338776fba2f9281bbfe96560"><div class="ttname"><a href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a></div><div class="ttdeci">size_t header_callback(char *buffer, size_t size, size_t nitems, struct site_cookie *cookiec)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00177">dbrequest.c:177</a></div></div>
-<div class="ttc" id="dbrequest_8c_html_a6c24911cf6fe0db4a6a8ccfdb2f28488"><div class="ttname"><a href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a></div><div class="ttdeci">int callbackSelect(void *data, int argc, char **argv, char **azColName)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00161">dbrequest.c:161</a></div></div>
+<div class="ttc" id="baseStruct_8c_html_a003e090ef8e500eceadba683e83a98ad"><div class="ttname"><a href="baseStruct_8c.html#a003e090ef8e500eceadba683e83a98ad">str_replace</a></div><div class="ttdeci">char * str_replace(const char *str, const char *old, const char *newOne)</div><div class="ttdef"><b>Definition:</b> <a href="baseStruct_8c_source.html#l00135">baseStruct.c:135</a></div></div>
+<div class="ttc" id="structurl__data_html"><div class="ttname"><a href="structurl__data.html">url_data</a></div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00041">dbrequest.h:41</a></div></div>
+<div class="ttc" id="structsite__cookie_html_a993673972e04f0a8dc5821e4fc6d5aa9"><div class="ttname"><a href="structsite__cookie.html#a993673972e04f0a8dc5821e4fc6d5aa9">site_cookie::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8h_source.html#l00031">dbrequest.h:31</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_ae96066b1338776fba2f9281bbfe96560"><div class="ttname"><a href="dbrequest_8c.html#ae96066b1338776fba2f9281bbfe96560">header_callback</a></div><div class="ttdeci">size_t header_callback(char *buffer, size_t size, size_t nitems, struct site_cookie *cookiec)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00175">dbrequest.c:175</a></div></div>
+<div class="ttc" id="dbrequest_8c_html_a6c24911cf6fe0db4a6a8ccfdb2f28488"><div class="ttname"><a href="dbrequest_8c.html#a6c24911cf6fe0db4a6a8ccfdb2f28488">callbackSelect</a></div><div class="ttdeci">int callbackSelect(void *data, int argc, char **argv, char **azColName)</div><div class="ttdef"><b>Definition:</b> <a href="dbrequest_8c_source.html#l00158">dbrequest.c:158</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_edaed777a13e9196bfe1f13ee27ced16.html">IoTHubImplementation</a></li><li class="navelem"><a class="el" href="dir_2c3ed11286edd76d36653cadcb9a083d.html">libs</a></li><li class="navelem"><a class="el" href="dbrequest_8c.html">dbrequest.c</a></li>
-    <li class="footer">Generated on Tue Feb 17 2015 12:26:19 for IoT hub Implementation by
+    <li class="footer">Generated on Sun Feb 22 2015 20:59:00 for IoT hub Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

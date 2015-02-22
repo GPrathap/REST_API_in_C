@@ -2,7 +2,7 @@ var searchData=
 [
   ['rand',['Rand',['../RESTfulRequest_8js.html#a01cfe05adadea05b9f7619781bf43b0e',1,'RESTfulRequest.js']]],
   ['randomstringgen_2ejs',['randomStringGen.js',['../randomStringGen_8js.html',1,'']]],
-  ['randomstringgenerator',['RandomStringGenerator',['../user_8js.html#a7e2e40d035385119fe7911bc9929a2d0',1,'RandomStringGenerator():&#160;user.js'],['../randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c',1,'randomStringGenerator():&#160;randomStringGen.js']]],
+  ['randomstringgenerator',['randomStringGenerator',['../randomStringGen_8js.html#a537444d6d5de80fc3215ef6a0624ad8c',1,'randomStringGenerator():&#160;randomStringGen.js'],['../user_8js.html#a7e2e40d035385119fe7911bc9929a2d0',1,'RandomStringGenerator():&#160;user.js']]],
   ['randstringgen',['randStringGen',['../user_8js.html#a481f907b33854c3c4f9ca5bb2ca2937d',1,'user.js']]],
   ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
   ['removetable',['removeTable',['../dbrequest_8c.html#a9f6a1cc5ab081f9850241931a3c639b9',1,'removeTable(char *TableName):&#160;dbrequest.c'],['../dbrequest_8h.html#af0621661477ab5395cdb89c176b3ba96',1,'removeTable(char *tableName):&#160;dbrequest.c']]],
