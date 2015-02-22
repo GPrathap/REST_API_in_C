@@ -162,3 +162,4 @@ size_t body_callback(void *ptr, size_t size, size_t nmemb, struct url_data *data
 size_t header_callback(char *buffer,size_t size,size_t nitems,struct site_cookie *cookiec);
 
 
+#define DB_PATH "/usr/local/apache2/cgi-bin/database/test.db"
